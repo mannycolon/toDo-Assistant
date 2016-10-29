@@ -5,7 +5,7 @@ Features
 ---
 - Ability to add, edit, remove or complete a to-do item.
 
-- **Persistence:** if the user closes and re-opens the application, the list will be recover since it is saved in the locally.
+- **Persistence:**  The list/s will be saved locally in the file system therefore if the user closes and re-opens the application,
 
 - Due dates for items
 
