@@ -1,5 +1,5 @@
 {
-  "name": "to-do-assistant",
+  "name": "ToDo-Assistant",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
@@ -25,17 +25,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mannycolon/to-do-assistant.git"
+    "url": "git+https://github.com/mannycolon/toDo-Assistant.git"
   },
   "keywords": [
-    "to-do",
+    "toDo",
     "assistant",
-    "app"
+    "app",
+    "to",
+    "do",
+    "list",
   ],
   "author": "Manny Colon",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mannycolon/to-do-assistant/issues"
+    "url": "https://github.com/mannycolon/toDo-Assistant.git/issues"
   },
-  "homepage": "https://github.com/mannycolon/to-do-assistant#readme"
+  "homepage": "https://github.com/mannycolon/toDo-Assistant.git#readme"
 }
