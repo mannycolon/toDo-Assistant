@@ -3,7 +3,7 @@ import React from "react";
 export default class App extends React.Component{
   render(){
     return(
-      <h1>Components</h1>
+      <h1>React Todos App</h1>
     );
   }
 }
