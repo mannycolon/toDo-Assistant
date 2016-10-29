@@ -1,7 +1,7 @@
 {
   "name": "ToDo-Assistant",
   "version": "1.0.0",
-  "description": "",
+  "description": "to-do list application.",
   "main": "webpack.config.js",
   "dependencies": {
     "babel-core": "^6.17.0",
