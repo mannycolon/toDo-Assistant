@@ -2,7 +2,7 @@ import React from "react";
 import Glyphicon  from 'react-bootstrap/lib/Glyphicon.js';
 
 
-export default class ToDosListItem extends React.Component{
+class ToDosListItem extends React.Component{
   constructor(){
     super();
     this.state = {
@@ -79,3 +79,5 @@ export default class ToDosListItem extends React.Component{
     );
   }
 }
+
+module.exports = ToDosListItem;

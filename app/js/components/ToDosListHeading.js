@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class ToDosListHeading extends React.Component{
+class ToDosListHeading extends React.Component{
   render(){
     return(
       <thead>
@@ -12,3 +12,5 @@ export default class ToDosListHeading extends React.Component{
     );
   }
 }
+
+module.exports = ToDosListHeading;

@@ -2,7 +2,7 @@ import React from "react";
 import Glyphicon  from 'react-bootstrap/lib/Glyphicon.js';
 
 
-export default class GenerateToDo extends React.Component{
+class GenerateToDo extends React.Component{
   constructor(){
     super();
     this.state = {
@@ -49,3 +49,5 @@ export default class GenerateToDo extends React.Component{
     );
   }
 }
+
+module.exports = GenerateToDo;

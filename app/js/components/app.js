@@ -28,7 +28,7 @@ const todos = [
 
 ];
 
-export default class App extends React.Component{
+class App extends React.Component{
   constructor(){
     super();
     this.state = {
@@ -62,7 +62,9 @@ export default class App extends React.Component{
   }
 
   saveJson(){
-    fs.writeFile('helloworld.txt', 'Hello World!', function (err) {
+    let data = this.state.todos;
+    console.log(this.state.todos);
+    fs.writeFile('helloworld.json', data, function (err) {
   if (err) return console.log(err);
   console.log('Hello World > helloworld.txt');
 });
@@ -95,3 +97,6 @@ export default class App extends React.Component{
     );
   }
 }
+module.exports = (
+  <App />
+);

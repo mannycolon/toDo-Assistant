@@ -2,7 +2,8 @@ import React from "react";
 import ToDosListHeading from "./ToDosListHeading";
 import ToDosListItem from "./ToDosListItem";
 
-export default class ToDosList extends React.Component{
+
+class ToDosList extends React.Component{
   getToDosListItems(){
     let tasks = this.props.todos;
     return tasks.map((todo, index) => <ToDosListItem key={index}
@@ -25,3 +26,5 @@ export default class ToDosList extends React.Component{
     );
   }
 }
+
+module.exports = ToDosList;
