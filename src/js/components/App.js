@@ -2,6 +2,7 @@ import React from "react";
 import ToDosList from "./ToDosList";
 import GenerateToDo from "./GenerateToDo";
 import style from "../../css/style.js";
+import fs from "fs";
 
 const todos = [
   {
@@ -61,11 +62,10 @@ export default class App extends React.Component{
   }
 
   saveJson(){
-    let data = this.state.todos;
-    fs.writeFile("saveData.text", data, function (err) {
-      return console.log(err);
-      });
-      console.log("done");
+    fs.writeFile('helloworld.txt', 'Hello World!', function (err) {
+  if (err) return console.log(err);
+  console.log('Hello World > helloworld.txt');
+});
 
   }
 
