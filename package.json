@@ -5,6 +5,7 @@
   "main": "main.js",
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "fs-extra": "^1.0.0",
     "npm": "^3.10.9",
     "react": "^15.3.2",
     "react-bootstrap": "^0.30.6",
@@ -34,10 +35,15 @@
     "do",
     "list"
   ],
-  "author": "",
+  "author": "Manny Colon",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mannycolon/toDo-Assistant/issues"
+    "url": "https://github.com/mannycolon/toDo-Assistant/issues",
+    "email" : "colonmanuel7@gmail.com"
   },
-  "homepage": "https://github.com/mannycolon/toDo-Assistant#readme"
+  "homepage": "https://github.com/mannycolon/toDo-Assistant#readme",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/mannycolon/toDo-Assistant.git"
+  }
 }

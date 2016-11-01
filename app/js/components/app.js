@@ -2,27 +2,27 @@ import React from "react";
 import ToDosList from "./ToDosList";
 import GenerateToDo from "./GenerateToDo";
 import style from "../../css/style.js";
-import fs from "fs";
+import fs from "fs-extra";
 
 const todos = [
   {
-    task: "make todo list app",
+    "task": "make todo list app",
     isDone: true
   },
   {
-    task: " Dhariany",
+    "task": " Dhariany",
     isDone: false
   },
   {
-    task: "make my bed",
+    "task": "make my bed",
     isDone: true
   },
   {
-    task: "create a new app",
+    "task": "create a new app",
     isDone: false
   },
   {
-    task: "call mom",
+    "task": "call mom",
     isDone: true
   }
 
@@ -43,7 +43,7 @@ class App extends React.Component{
     this.setState({ todo: this.state.todos });
   }
   toggleTask(task){
-    //using the find() method to finde the first element in
+    //using the find() method to find the first element in
     //the array that satisfies the callback (es6 arrrow function)
     const foundTodo = this.state.todos.find(todo => todo.task === task);
     foundTodo.isDone = !foundTodo.isDone;
@@ -62,13 +62,14 @@ class App extends React.Component{
   }
 
   saveJson(){
+    var file = './localStorage/data.json';
     let data = this.state.todos;
-    console.log(this.state.todos);
-    fs.writeFile('helloworld.json', data, function (err) {
-  if (err) return console.log(err);
-  console.log('Hello World > helloworld.txt');
-});
-
+    fs.outputJson(file, data, function (err) {
+      console.log(err) // => null
+      fs.readJson(file, function(err, data) {
+        console.log(data);//will be removed
+      })
+    })
   }
 
 
