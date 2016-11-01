@@ -1,6 +1,7 @@
 import React from "react";
 import ToDosList from "./ToDosList";
 import GenerateToDo from "./GenerateToDo";
+import style from "../../css/style.js";
 
 const todos = [
   {
@@ -8,9 +9,22 @@ const todos = [
     isDone: true
   },
   {
-    task: "kiss Dhariany",
+    task: " Dhariany",
     isDone: false
+  },
+  {
+    task: "make my bed",
+    isDone: true
+  },
+  {
+    task: "create a new app",
+    isDone: false
+  },
+  {
+    task: "call mom",
+    isDone: true
   }
+
 ];
 
 export default class App extends React.Component{
@@ -45,17 +59,38 @@ export default class App extends React.Component{
     this.state.todos.splice( this.state.todos.indexOf(foundTodo), 1 );
     this.setState({ todos: this.state.todos });
   }
+
+  saveJson(){
+    let data = this.state.todos;
+    fs.writeFile("saveData.text", data, function (err) {
+      return console.log(err);
+      });
+      console.log("done");
+
+  }
+
+
+
   render(){
     return(
       <div>
-        <h1>React Todos App</h1>
-        <GenerateToDo todos={this.state.todos} addTask={this.addTask.bind(this)}/>
+      <center><h1 onClick={this.saveJson.bind(this)}>ToDo Assistant</h1>
+      <GenerateToDo todos={this.state.todos} addTask={this.addTask.bind(this)}/>
+      </center>
+
+      <div style={style.paper}>
+        <div style={style.sideline}></div>
+        <div style={style.paperContent}>
         <ToDosList
           todos={this.state.todos}
           toggleTask={this.toggleTask.bind(this)}
           saveTask={this.saveTask.bind(this)}
           deleteTask={this.deleteTask.bind(this)}
         />
+
+        </div>
+      </div>
+
       </div>
     );
   }

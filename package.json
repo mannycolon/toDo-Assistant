@@ -14,13 +14,14 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
     "react": "^15.3.2",
+    "react-bootstrap": "^0.30.6",
     "react-dom": "^15.3.2",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot",
+    "start": "./node_modules/.bin/webpack-dev-server --content-base --inline --hot",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -2,14 +2,14 @@ var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
 
 module.exports = {
-  context: __dirname + "/src",
+  context: __dirname,
   devtool: debug ? "inline-sourcemap" : null,
-  entry: "./js/Index.js",
+  entry: "./src/js/Index.js",
   module: {
     loaders: [
       {
         test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /(node_modules)/,
         loader: 'babel-loader',
         query: {
           presets: ['react', 'es2015', 'stage-0'],
@@ -19,7 +19,7 @@ module.exports = {
     ]
   },
   output: {
-    path: __dirname + "/src/",
+    path: __dirname,
     filename: "bundle.js"
   },
   plugins: debug ? [] : [
@@ -27,4 +27,5 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
   ],
+
 };

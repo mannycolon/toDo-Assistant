@@ -1,4 +1,6 @@
 import React from "react";
+import Glyphicon  from 'react-bootstrap/lib/Glyphicon.js';
+
 
 export default class ToDosListItem extends React.Component{
   constructor(){
@@ -12,6 +14,7 @@ export default class ToDosListItem extends React.Component{
     const {task, isDone} = this.props;
     const taskStyle = {
       color: isDone ? "green" : "red",
+      fontSize: "18px",
       cursor: "pointer"
     };
     if(this.state.isEditing){
@@ -24,7 +27,7 @@ export default class ToDosListItem extends React.Component{
       );
     }
     return (
-      <td style={taskStyle} onClick={this.props.toggleTask.bind(this, task)}>
+      <td style={taskStyle} onClick={this.onEditClick.bind(this)}>
         {task}
       </td>
     );
@@ -41,8 +44,12 @@ export default class ToDosListItem extends React.Component{
     }
     return (
       <td>
-        <button onClick={this.onEditClick.bind(this)}>Edit</button>
-        <button onClick={this.props.deleteTask.bind(this, this.props.task)}>Delete</button>
+        <div onClick={this.props.deleteTask.bind(this, this.props.task)}>
+          <Glyphicon glyph="remove-circle" style={{float: "left", marginLeft: "5px"}}/>
+        </div>
+        <div onClick={this.props.toggleTask.bind(this, this.props.task)}>
+          <Glyphicon glyph="ok-circle" style={{float: "left", marginLeft: "5px", color:"green"}}/>
+        </div>
       </td>
     );
   }

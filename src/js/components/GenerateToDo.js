@@ -1,4 +1,6 @@
 import React from "react";
+import Glyphicon  from 'react-bootstrap/lib/Glyphicon.js';
+
 
 export default class GenerateToDo extends React.Component{
   constructor(){
@@ -41,7 +43,7 @@ export default class GenerateToDo extends React.Component{
     return(
       <form onSubmit={this.handleNewToDo.bind(this)}>
         <input type="text" placeholder="Add a item to your to-do list" ref="addToDoInput"/>
-        <button>Add</button>
+        <button><Glyphicon glyph="plus-sign" /></button>
         {this.handleError()}
       </form>
     );
