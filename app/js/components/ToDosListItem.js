@@ -37,17 +37,19 @@ class ToDosListItem extends React.Component{
     if(this.state.isEditing){
       return (
         <td>
-          <button onClick={this.onSave.bind(this)}>Save</button>
-          <button onClick={this.onCancelEdit.bind(this)}>Cancel</button>
+          <button onClick={this.onSave.bind(this)} title="Save changes">Save</button>
+          <button onClick={this.onCancelEdit.bind(this)} title="Cancel changes">Cancel</button>
         </td>
       );
     }
     return (
       <td>
-        <div onClick={this.props.deleteTask.bind(this, this.props.task)}>
-          <Glyphicon glyph="remove-circle" style={{float: "left", marginLeft: "5px"}}/>
+        <div onClick={this.props.deleteTask.bind(this, this.props.task)} title="Delete Task">
+          <Glyphicon glyph="remove-circle"
+                     style={{float: "left", marginLeft: "5px"}}
+          />
         </div>
-        <div onClick={this.props.toggleTask.bind(this, this.props.task)}>
+        <div onClick={this.props.toggleTask.bind(this, this.props.task)} title="Complete Task">
           <Glyphicon glyph="ok-circle" style={{float: "left", marginLeft: "5px", color:"green"}}/>
         </div>
       </td>
