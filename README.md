@@ -1,4 +1,6 @@
 # ToDo-Assistant
+![Logo](https://github.com/mannycolon/toDo-Assistant/blob/master/app/img/logo.png "ToDo-Assistant")
+
 to-do list application.
 
 Features
