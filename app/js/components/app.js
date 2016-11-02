@@ -18,20 +18,19 @@ class App extends React.Component{
 
   readData(){
     let tempObj = null;
-    fs.readJson('./localStorage/data.json', (error, Obj) => {
+    fs.readJson('./localStore/data.json', (error, Obj) => {
       if (error) {
         console.error(error);
       }
       else {
         this.setState({ todos: Obj });
-        console.log(this.state.todos);
       }
 
     });
   }
 
   saveData(){
-    var file = './localStorage/data2.json';
+    var file = './localStore/data.json';
     let data = this.state.todos;
     fs.outputJson(file, data, function (err) {
       console.log(err) // => null

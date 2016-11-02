@@ -1,23 +1,22 @@
 import dispatcher from "../dispatcher";
 
 
-module.exports = {
-
-  function createTodo(text) {
+class ToDosActions {
+  createTodo(text) {
     dispatcher.dispatch({
       type: "CREATE_TODO",
       text,
     });
   }
 
-  function deleteTodo(id) {
+  deleteTodo(id) {
     dispatcher.dispatch({
       type: "DELETE_TODO",
       id,
     });
   }
 
-  function reloadTodos() {
+  reloadTodos() {
     // axios("http://someurl.com/somedataendpoint").then((data) => {
     //   console.log("got the data!", data);
     // })
@@ -38,5 +37,7 @@ module.exports = {
     }, 1000);
   }
 
+}
 
-};
+const TodoActions = new ToDosActions();
+module.exports = TodoActions;
