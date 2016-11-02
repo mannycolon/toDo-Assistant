@@ -3,21 +3,7 @@ import dispatcher from "../dispatcher";
 import fs from "fs-extra";
 import readJSON from "utils-fs-read-json";
 import path from 'path';
-/*
-this.todos = [
-  {
-    id: 113464613,
-    text: "Go Shopping",
-    complete: false
-  },
-  {
-    id: 235684679,
-    text: "Pay Water Bill",
-    complete: false
-  },
-];
 
-*/
 
 class ToDoStore extends EventEmitter {
   constructor() {
@@ -26,32 +12,34 @@ class ToDoStore extends EventEmitter {
   }
 
   readData(){
-    var file = './localStore/data2.json';
+    var file = './localStore/data.json';
     var data = readJSON.sync( file, 'utf8' );
-
+    if(Array.isArray(data)){
+      return data;
+    }else{
+      data = [];
+    }
     return data;
   }
 
   saveData(){
-    var file = './localStore/data2.json';
+    var file = './localStore/data.json';
     let data = this.todos;
     fs.outputJson(file, data, function (err) {
-      console.log(err) // => null
+      err ? console.log(err) : console.log("saved succesfully");
       fs.readJson(file, function(err, data) {
-        console.log(data);//will be removed
       })
     })
   }
 
-  createTodo(text) {
+  createTodo(task) {
     const id = Date.now();
-
     this.todos.push({
       id,
-      text,
-      complete: false,
+      task,
+      isDone: false,
     });
-
+    this.saveData();
     this.emit("change");
   }
 
@@ -59,10 +47,45 @@ class ToDoStore extends EventEmitter {
     return this.todos;
   }
 
+  deleteTodo(idToDelete){
+    const foundTodo = this.todos.find(todo => todo.id === idToDelete);
+    this.todos.splice( this.todos.indexOf(foundTodo), 1 );
+    this.saveData();
+    this.emit("change");
+  }
+
+  completeTodo(id){
+    //using the find() method to find the first element in
+    //the array that satisfies the callback (es6 arrrow function)
+    const foundTodo = this.todos.find(todo => todo.id === id);
+    foundTodo.isDone = !foundTodo.isDone;
+    this.saveData();
+    this.emit("change");
+  }
+
+  editTodo(oldTask, newTask){
+    const foundTodo = this.todos.find(todo => todo.task === oldTask);
+    foundTodo.task = newTask;
+    this.saveData();
+    this.emit("change");
+  }
+
   handleActions(action) {
     switch(action.type) {
       case "CREATE_TODO": {
-        this.createTodo(action.text);
+        this.createTodo(action.task);
+        break;
+      }
+      case "DELETE_TODO": {
+        this.deleteTodo(action.id);
+        break;
+      }
+      case "COMPLETE_TODO": {
+        this.completeTodo(action.id);
+        break;
+      }
+      case "EDIT_TODO": {
+        this.editTodo(action.oldTask, action.newTask);
         break;
       }
       case "RECEIVE_TODOS": {

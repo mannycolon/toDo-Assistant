@@ -6,7 +6,6 @@ import ToDoStore from "../stores/ToDoStore";
 import GenerateToDo from "./GenerateToDo";
 import style from "../../css/style.js";
 
-//i think ToDosComponents(Todos) is the similar to ToDosList or maybe app
 class ToDosComponents extends React.Component {
   constructor() {
     super();
@@ -38,10 +37,24 @@ class ToDosComponents extends React.Component {
     ToDoActions.createTodo(task);
   }
 
+  deleteTask(id){
+    ToDoActions.deleteTodo(id);
+  }
+
+  completeTask(id){
+    ToDoActions.completeTodo(id);
+  }
+
+  editTask(oldTask, newTask){
+    ToDoActions.editTodo(oldTask, newTask);
+  }
+
   render(){
     const { todos } = this.state;
     const TodoComponents = todos.map((todo) => {
-        return <Todo key={todo.id} {...todo}/>;
+        return <Todo key={todo.id} {...todo} completeTask={this.completeTask.bind(this)}
+                                             editTask={this.editTask.bind(this)}
+                                             deleteTask={this.deleteTask.bind(this)} />;
     });
 
     return (
@@ -54,7 +67,7 @@ class ToDosComponents extends React.Component {
         <div style={style.paper}>
           <div style={style.sideline}></div>
           <div style={style.paperContent}>
-            <ul>{TodoComponents}</ul>
+              {TodoComponents}
           </div>
         </div>
       </div>
