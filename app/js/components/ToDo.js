@@ -27,7 +27,7 @@ class ToDos extends React.Component {
       );
     }
     return (
-        <td style={taskStyle} onClick={this.onEditClick.bind(this)}>
+        <td style={taskStyle} onClick={this.onEditClick.bind(this)} title="Click to edit">
           {task}
         </td>
     );
