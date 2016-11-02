@@ -16,7 +16,7 @@ Features
 - Ability to nest to-do items
 
 - Multi-user.
-APPLICATION ARCHITECTURE: **Flux architecture**
+APPLICATION ARCHITECTURE: Flux
 ---
 **Overview**
 Flux is the application architecture that Facebook uses for building client-side web applications. It complements React's composable view components by utilizing a unidirectional data flow. It's more of a pattern rather than a formal framework, and you can start using Flux immediately without a lot of new code. Read more at [Link](https://facebook.github.io/flux/ "Flux Homepage")
