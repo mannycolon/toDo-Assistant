@@ -5,18 +5,22 @@ to-do list application.
 
 Features
 ---
-- Ability to add, edit, remove or complete a to-do item.
-
-- **Persistence:**  The list/s will be saved locally in the file system therefore if the user closes and re-opens the application,
-
-- Due dates for items
-
-- Categorizing items
-
-- Ability to nest to-do items
-
 - Multi-user.
-APPLICATION ARCHITECTURE: Flux
+
+- Categorizing to-do lists.
+
+- Add, edit, remove or complete a to-do item.
+
+- Data persistence (Data is saved locally in the file system in a json file).
+
+- Due dates for items (Not yet supported)
+
+- Categorizing items (Not yet supported)
+
+- Ability to nest to-do items (Not yet supported)
+
+
+Application Architecture: Flux
 ---
 **Overview**
 Flux is the application architecture that Facebook uses for building client-side web applications. It complements React's composable view components by utilizing a unidirectional data flow. It's more of a pattern rather than a formal framework, and you can start using Flux immediately without a lot of new code. Read more at [Link](https://facebook.github.io/flux/ "Flux Homepage")
