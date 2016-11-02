@@ -4,37 +4,43 @@ import GenerateToDo from "./GenerateToDo";
 import style from "../../css/style.js";
 import fs from "fs-extra";
 
-const todos = [
-  {
-    "task": "make todo list app",
-    isDone: true
-  },
-  {
-    "task": " Dhariany",
-    isDone: false
-  },
-  {
-    "task": "make my bed",
-    isDone: true
-  },
-  {
-    "task": "create a new app",
-    isDone: false
-  },
-  {
-    "task": "call mom",
-    isDone: true
-  }
-
-];
 
 class App extends React.Component{
   constructor(){
     super();
     this.state = {
-      todos: todos,
+      todos: [],
     };
   }
+  componentWillMount(){
+    this.readData();
+  }
+
+  readData(){
+    let tempObj = null;
+    fs.readJson('./localStorage/data.json', (error, Obj) => {
+      if (error) {
+        console.error(error);
+      }
+      else {
+        this.setState({ todos: Obj });
+        console.log(this.state.todos);
+      }
+
+    });
+  }
+
+  saveData(){
+    var file = './localStorage/data2.json';
+    let data = this.state.todos;
+    fs.outputJson(file, data, function (err) {
+      console.log(err) // => null
+      fs.readJson(file, function(err, data) {
+        console.log(data);//will be removed
+      })
+    })
+  }
+
   addTask(task){
     this.state.todos.push({
       task: task,
@@ -61,23 +67,12 @@ class App extends React.Component{
     this.setState({ todos: this.state.todos });
   }
 
-  saveJson(){
-    var file = './localStorage/data.json';
-    let data = this.state.todos;
-    fs.outputJson(file, data, function (err) {
-      console.log(err) // => null
-      fs.readJson(file, function(err, data) {
-        console.log(data);//will be removed
-      })
-    })
-  }
-
 
 
   render(){
     return(
       <div>
-      <center><h1 onClick={this.saveJson.bind(this)}>ToDo Assistant</h1>
+      <center><h1 onClick={this.readData.bind(this)}>ToDo Assistant</h1>
       <GenerateToDo todos={this.state.todos} addTask={this.addTask.bind(this)}/>
       </center>
 
