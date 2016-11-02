@@ -1,11 +1,10 @@
 import dispatcher from "../dispatcher";
 
-
 class ToDosActions {
-  createTodo(text) {
+  createTodo(task) {
     dispatcher.dispatch({
       type: "CREATE_TODO",
-      text,
+      task,
     });
   }
 
@@ -13,6 +12,21 @@ class ToDosActions {
     dispatcher.dispatch({
       type: "DELETE_TODO",
       id,
+    });
+  }
+
+  completeTodo(id) {
+    dispatcher.dispatch({
+      type: "COMPLETE_TODO",
+      id,
+    });
+  }
+
+  editTodo(oldTask, newTask) {
+    dispatcher.dispatch({
+      type: "EDIT_TODO",
+      oldTask,
+      newTask
     });
   }
 
@@ -25,13 +39,13 @@ class ToDosActions {
       dispatcher.dispatch({type: "RECEIVE_TODOS", todos: [
         {
           id: 8484848484,
-          text: "Go Shopping Again",
-          complete: false
+          task: "Go Shopping Again",
+          isDone: false
         },
         {
           id: 6262627272,
-          text: "Hug Wife",
-          complete: true
+          task: "Hug Wife",
+          isDone: true
         },
       ]});
     }, 1000);
