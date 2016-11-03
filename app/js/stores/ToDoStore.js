@@ -56,7 +56,7 @@ class ToDoStore extends EventEmitter {
     if(!newUsername){
       return ' Please enter an username.';
     }else if (foundUsername && foundUsername.username === newUsername) {
-      return " username already exists";
+      return " This username already exists";
     }else{
       return null;
     }

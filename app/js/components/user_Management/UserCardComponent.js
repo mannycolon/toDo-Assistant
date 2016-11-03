@@ -5,7 +5,7 @@ var style = {
   layout:{
     display: "inline-block",
     width: "50%",
-    height: "150px",
+    height: "168px",
     padding: "20px",
     border: "1px solid #000",
     backgroundColor: "#158d44",
@@ -21,7 +21,7 @@ class UserCardComponent extends React.Component {
 
   render() {
     return (
-      <div style={style.layout} title="Click to select user">
+      <div style={style.layout} title={"Click to open user session with " + this.props.username}>
         <center>
           <img src="app/img/userIcon.png" width="50px" height="50px" style={{margin: "20px"}}/>
           <span style={{fontSize: "16px"}}>{" Username: " + this.props.username}</span>

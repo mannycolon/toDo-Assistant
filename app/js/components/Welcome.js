@@ -10,7 +10,7 @@ var style = {
     marginLeft: "15px",
     position: "relative",
     width: "400px",
-    height: "500px",
+    height: "504px",
     background: "#000000",
     boxShadow: "0 15px 10px #777",
     overflow: "auto",
@@ -25,6 +25,7 @@ class Welcome extends React.Component {
   constructor(props) {
     super();
     this.state = {
+      open: true,
     };
   }
 
@@ -32,6 +33,7 @@ class Welcome extends React.Component {
     return (
       <div>
         <center>
+          <h1 className="chalk" style={{color: "#A21E21"}}>Welcome to ToDo Assistant</h1>
           <div style={style.box}>
             <CreateNewUser />
           </div>
