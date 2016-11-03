@@ -12,16 +12,16 @@ var style = {
   },
 
   paper:{
-    margin: "auto",
+    margin: "45px",
     position: "relative",
     width: "300px",
     height: "400px",
-    marginTop: "20px",
     background: "#fafafa",
     borderRadius: "10px",
     boxShadow: "0px 2px 8px rgba(0,0,0,.3)",
     overflow: "auto",
-    marginBottom: "15px",
+    display: "inline-block",
+    textAlign: "left",
   },
 
   paperContent:{

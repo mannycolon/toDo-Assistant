@@ -26,9 +26,9 @@ class GenerateToDo extends React.Component{
 
   validateUserInput(task){
     if(!task){
-      return 'Please enter a task.';
+      return ' Please enter a task.';
     }else if(this.props.todos.find(todo => todo.task === task)) {
-      return 'Task was previously created.';
+      return ' Task was previously created.';
     }else{
       return null;
     }
@@ -36,14 +36,25 @@ class GenerateToDo extends React.Component{
 
   handleError(){
     if(!this.state.error) {return null;}
-    return <div style={{color: "red"}}>{this.state.error}</div>;
+    return <div style={{color: "#A21E21"}}>
+            <Glyphicon glyph="warning-sign" />
+            {this.state.error}
+          </div>;
   }
 
   render(){
     return(
       <form onSubmit={this.handleNewToDo.bind(this)}>
-        <input type="text" placeholder="Add a item to your to-do list" ref="addToDoInput"/>
-        <button><Glyphicon glyph="plus-sign" /></button>
+        <input type="text" placeholder=" Add new item to your to-do list"
+               ref="addToDoInput" style={{width: "300px", borderStyle: "solid",
+               borderTopLeftRadius: "4px", borderBottomLeftRadius: "4px",
+               height: "31px", borderColor: "#7F142A"}}/>
+        <button style={{backgroundColor: "#158d44", border: "none",
+                borderTopRightRadius: "4px", borderBottomRightRadius: "4px",
+                borderColor: "#158d44", borderStyle: "solid"}}
+                title="Add new to-do">
+          <Glyphicon glyph="plus-sign" style={{color: "#FFFFFF"}}/>
+        </button>
         {this.handleError()}
       </form>
     );
