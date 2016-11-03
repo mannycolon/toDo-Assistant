@@ -52,24 +52,46 @@ class ToDosComponents extends React.Component {
   render(){
     const { todos } = this.state;
     const TodoComponents = todos.map((todo) => {
+      while(!todo.isDone){
         return <Todo key={todo.id} {...todo} completeTask={this.completeTask.bind(this)}
                                              editTask={this.editTask.bind(this)}
                                              deleteTask={this.deleteTask.bind(this)} />;
+      }
+    });
+
+    const DoneTasks = todos.map((todo) => {
+      while(todo.isDone){
+        return <Todo key={todo.id} {...todo} completeTask={this.completeTask.bind(this)}
+                                             editTask={this.editTask.bind(this)}
+                                             deleteTask={this.deleteTask.bind(this)} />;
+      }
     });
 
     return (
       <div>
-      <button onClick={this.reloadTodos.bind(this)}>reload</button>
+        <button onClick={this.reloadTodos.bind(this)}>reload</button>
         <center>
           <img src="app/img/logo.png" width="130px" height="90px" />
           <GenerateToDo todos={this.state.todos} addTask={this.addTask.bind(this)} />
-        </center>
-        <div style={style.paper}>
-          <div style={style.sideline}></div>
-          <div style={style.paperContent}>
+          <div style={style.paper}>
+            <div style={style.sideline}></div>
+            <div style={style.paperContent}>
+              <span className="chalk" style={{color: "#A21E21", fontSize: "26px"}}>
+              To Dos
+              </span>
               {TodoComponents}
+            </div>
           </div>
-        </div>
+          <div style={style.paper}>
+            <div style={style.sideline}></div>
+            <div style={style.paperContent}>
+              <span className="chalk" style={{color: "#158d44", fontSize: "26px"}}>
+                Done Tasks
+              </span>
+              {DoneTasks}
+            </div>
+          </div>
+        </center>
       </div>
     );
   }

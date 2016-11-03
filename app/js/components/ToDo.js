@@ -27,7 +27,8 @@ class ToDos extends React.Component {
       );
     }
     return (
-        <td style={taskStyle} onClick={this.onEditClick.bind(this)}>
+        <td style={taskStyle} onClick={this.onEditClick.bind(this)}
+            title="Click to edit">
           {task}
         </td>
     );
@@ -58,9 +59,10 @@ class ToDos extends React.Component {
                        style={{marginLeft: "5px"}}/>
           </div>
           <div onClick={this.props.completeTask.bind(this, this.props.id)}
-               title="Complete Task" style={{display: "inline-block", cursor: "pointer"}}>
-            <Glyphicon glyph="ok"
-                       style={{marginLeft: "5px", color:"green"}}/>
+               title={this.props.isDone ? "Uncomplete Task" : "Complete Task"}
+               style={{display: "inline-block", cursor: "pointer"}}>
+            <Glyphicon glyph={this.props.isDone ? "chevron-left" : "ok"}
+               style={this.props.isDone ? {marginLeft: "5px", color:"#A21E21"} : {marginLeft: "5px", color:"#158d44"}}/>
           </div>
         </td>
     );
