@@ -8,7 +8,7 @@
   const React = require('react');
   var App = {
     init: function() {
-      var Application = require("./js/components/ToDosComponents");
+      var Application = require("./js/components/Welcome");
 
       ReactDOM.render(Application, document.getElementById('content'));
     }

@@ -1,8 +1,8 @@
 import React from "react";
 
-import Todo from "./Todo";
 import ToDoActions from "../actions/ToDoActions";
 import ToDoStore from "../stores/ToDoStore";
+import Todo from "./Todo";
 import GenerateToDo from "./GenerateToDo";
 import style from "../../css/style.js";
 
@@ -66,7 +66,6 @@ class ToDosComponents extends React.Component {
                                              deleteTask={this.deleteTask.bind(this)} />;
       }
     });
-
     return (
       <div>
         <button onClick={this.reloadTodos.bind(this)}>reload</button>
