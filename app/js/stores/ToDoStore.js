@@ -9,6 +9,7 @@ class ToDoStore extends EventEmitter {
   constructor() {
     super()
     this.todos = this.readData();
+    this.currentUser = null;
   }
 
   readData(){
@@ -69,8 +70,14 @@ class ToDoStore extends EventEmitter {
       //initiating the todoLists array
       newUserNameObj.todoLists = [];
       this.todos.push(newUserNameObj);
+      this.setCurrentUserInStore(newUserNameObj.username);
       this.saveData();
       this.emit("newUser");
+  }
+
+  setCurrentUserInStore(username){
+    this.currentUser = username;
+    this.emit("currentUserUpdated");
   }
 
   createTodo(task) {
