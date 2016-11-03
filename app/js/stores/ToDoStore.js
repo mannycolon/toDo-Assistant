@@ -9,6 +9,7 @@ class ToDoStore extends EventEmitter {
   constructor() {
     super()
     this.todos = this.readData();
+    this.currentUser = null;
   }
 
   readData(){
@@ -37,7 +38,6 @@ class ToDoStore extends EventEmitter {
   }
 
   getAllUserNames() {
-    console.log(this.todos);
     const foundAllUsernames = [];
     let dataArray = this.todos;
     for(var element in dataArray){
@@ -47,9 +47,8 @@ class ToDoStore extends EventEmitter {
   }
 
   getValidatedUsername(newUsername){
-    //TODO:  NEEDS TESTING
+    //TODO:  NEEDS more TESTING
     let foundUsername;
-    console.log(this.todos);
     if(this.todos.length == 0){
       console.log("it is zero");
     }else{
@@ -58,23 +57,27 @@ class ToDoStore extends EventEmitter {
     if(!newUsername){
       return ' Please enter an username.';
     }else if (foundUsername && foundUsername.username === newUsername) {
-      return " username already exists";
+      return " This username already exists";
     }else{
       return null;
     }
   }
 
   createNewUsername(newUsername){
-    //TODO:  NEEDS TESTING
+    //TODO:  NEEDS more TESTING
       let newUserNameObj = new Object();
       newUserNameObj.username = newUsername;
       //initiating the todoLists array
       newUserNameObj.todoLists = [];
-      console.log(newUserNameObj);
       this.todos.push(newUserNameObj);
-      console.log(this.todos);
+      this.setCurrentUserInStore(newUserNameObj.username);
       this.saveData();
       this.emit("newUser");
+  }
+
+  setCurrentUserInStore(username){
+    this.currentUser = username;
+    this.emit("currentUserUpdated");
   }
 
   createTodo(task) {

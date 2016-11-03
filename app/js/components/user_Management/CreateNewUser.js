@@ -30,7 +30,7 @@ class CreateNewUser extends React.Component {
   handleNewUser(event){
     event.preventDefault();
     const newUserNameInput = this.refs.newUserNameInput;
-    const username = newUserNameInput.value;
+    const username = newUserNameInput.value.toLowerCase();
     const validatedUsername = ToDoStore.getValidatedUsername(username);
     if(validatedUsername){
       this.setState({error: validatedUsername});
@@ -43,8 +43,8 @@ class CreateNewUser extends React.Component {
   }
 
   handleUsernameError(){
-    if(!this.state.error) {return <div>{" "}</div>;}
-    return <div style={{color: "#A21E21"}}>
+    if(!this.state.error) {return null;}
+    return <div style={{color: "#A21E21", fontSize: "18px"}}>
             <Glyphicon glyph="warning-sign" />
             {this.state.error}
           </div>;
@@ -58,10 +58,10 @@ class CreateNewUser extends React.Component {
           <img src="app/img/logo.png" width="160px" height="120px" style={{marginTop: "40px"}}/>
           <h4>Please create a new user</h4>
           <form onSubmit={this.handleNewUser.bind(this)}>
-            <input type="text" placeholder="Please type an username" ref="newUserNameInput"
+            <input type="text" placeholder="Please enter an username" ref="newUserNameInput"
                    style={{width: "200px", marginBottom: "50px", marginTop: "10px", color: "#000"}}/>
             {this.handleUsernameError()}
-            <button style={userButton}>Create User</button>
+            <button style={userButton} title="Click to create a new user">Create User</button>
           </form>
         </center>
       </div>

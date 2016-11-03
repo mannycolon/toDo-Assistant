@@ -12,7 +12,8 @@ var style = {
   },
 
   paper:{
-    margin: "45px",
+    margin: "10px",
+    marginTop: "45px",
     position: "relative",
     width: "300px",
     height: "400px",
@@ -31,7 +32,85 @@ var style = {
     bottom: "30px",
     left: "70px",
     backgroundSize: "30px 30px",
-  }
+  },
+
+  SideMenu:{
+    backgroundColor: "#A21E21",
+    height: "100vh",
+    width: "210px",
+    left: "70px",
+    display: "inline-block",
+    position: "fixed",
+    zIndex: "99",
+    fontSize: "12px",
+    overflowY: "auto",
+    color: "#FFF",
+    padding: "15px",
+  },
+
+  SideBar:{
+    backgroundColor: "#000",
+    height: "100vh",
+    width: "70px",
+    marginLeft: "0px",
+    left: "0px",
+    display: "inline-block",
+    position: "fixed",
+    zIndex: "99",
+    fontSize: "12px",
+    overflowY: "hidden",
+  },
+  ul: {
+      margin: "0px",
+      padding: "0px",
+  },
+  li: {
+    display: "block",
+    textAlign: "center",
+    paddingTop: "10px",
+    paddingBottom: "10px",
+    color: "#FFF",
+    cursor: "pointer",
+    userSelect: "none",
+  },
+  liHover:{
+    backgroundColor: "#FFF",
+    color: "#A21E21",
+    display: "block",
+    textAlign: "center",
+    paddingTop: "10px",
+    paddingBottom: "10px",
+    cursor: "pointer",
+    userSelect: "none",
+  },
+
+  glyphicon: {
+    fontSize: "16px",
+    color: "#FFF",
+  },
+
+  glyphiconHover: {
+    fontSize: "16px",
+    color: "#A21E21",
+  },
+
+  SideBarUserIcon:{
+    width: "30px",
+    height: "30px",
+    marginTop: "20px",
+    marginBottom: "20px",
+  },
+  imgHover:{
+    backgroundColor: "#FFF",
+    cursor: "pointer",
+    alignContent: "center",
+  },
+
+  imgUnHover:{
+    cursor: "pointer",
+    alignContent: "center",
+  },
+
 };
 
 
