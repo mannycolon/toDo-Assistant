@@ -1,6 +1,6 @@
 import React from "react";
-import Glyphicon  from 'react-bootstrap/lib/Glyphicon.js';
 
+import Glyphicon  from 'react-bootstrap/lib/Glyphicon.js';
 
 class GenerateToDo extends React.Component{
   constructor(){

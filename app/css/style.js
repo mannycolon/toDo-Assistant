@@ -60,6 +60,56 @@ var style = {
     fontSize: "12px",
     overflowY: "hidden",
   },
+  ul: {
+      margin: "0px",
+      padding: "0px",
+  },
+  li: {
+    display: "block",
+    textAlign: "center",
+    paddingTop: "10px",
+    paddingBottom: "10px",
+    color: "#FFF",
+    cursor: "pointer",
+    userSelect: "none",
+  },
+  liHover:{
+    backgroundColor: "#FFF",
+    color: "#A21E21",
+    display: "block",
+    textAlign: "center",
+    paddingTop: "10px",
+    paddingBottom: "10px",
+    cursor: "pointer",
+    userSelect: "none",
+  },
+
+  glyphicon: {
+    fontSize: "16px",
+    color: "#FFF",
+  },
+
+  glyphiconHover: {
+    fontSize: "16px",
+    color: "#A21E21",
+  },
+
+  SideBarUserIcon:{
+    width: "30px",
+    height: "30px",
+    marginTop: "20px",
+    marginBottom: "20px",
+  },
+  imgHover:{
+    backgroundColor: "#FFF",
+    cursor: "pointer",
+    alignContent: "center",
+  },
+
+  imgUnHover:{
+    cursor: "pointer",
+    alignContent: "center",
+  },
 
 };
 
