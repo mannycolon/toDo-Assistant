@@ -43,7 +43,7 @@ class CreateNewUser extends React.Component {
   }
 
   handleUsernameError(){
-    if(!this.state.error) {return <div>{" "}</div>;}
+    if(!this.state.error) {return null;}
     return <div style={{color: "#A21E21", fontSize: "18px"}}>
             <Glyphicon glyph="warning-sign" />
             {this.state.error}
