@@ -2,7 +2,7 @@ import React from "react";
 import Glyphicon  from 'react-bootstrap/lib/Glyphicon.js';
 
 
-class User extends React.Component {
+class Welcome extends React.Component {
   constructor(props) {
     super();
     this.state = {
@@ -12,11 +12,11 @@ class User extends React.Component {
   render() {
     return (
       <div>
-        
+
       </div>
     );
   }
 }
 
 
-module.exports = User;
+module.exports = Welcome;
