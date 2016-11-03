@@ -1,17 +1,8 @@
 
 import React from "react";
+import style from "../../../css/style.js";
 
-var style = {
-  layout:{
-    display: "inline-block",
-    width: "50%",
-    height: "168px",
-    padding: "20px",
-    border: "1px solid #000",
-    backgroundColor: "#A21E21",
-    cursor: "pointer",
-  }
-}
+
 class UserCardComponent extends React.Component {
   constructor(props) {
     super();

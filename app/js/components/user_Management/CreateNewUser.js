@@ -3,21 +3,8 @@ import React from "react";
 import ToDoActions from "../../actions/ToDoActions";
 import ToDoStore from "../../stores/ToDoStore";
 import Glyphicon  from 'react-bootstrap/lib/Glyphicon.js';
+import style from "../../../css/style.js";
 
-var userButton = {
-  backgroundColor: "#158d44",
-  border: "none",
-  color: "white",
-  padding: "15px 32px",
-  textAlign: "center",
-  textDecoration: "none",
-  fontSize: "16px",
-  margin: "4px 2px",
-  cursor: "pointer",
-  marginTop: "40px",
-  marginBottom: "40px",
-  display: "block",
-}
 
 class CreateNewUser extends React.Component {
   constructor(props) {

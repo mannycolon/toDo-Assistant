@@ -111,6 +111,31 @@ var style = {
     alignContent: "center",
   },
 
+  userButton:{
+    backgroundColor: "#158d44",
+    border: "none",
+    color: "white",
+    padding: "15px 32px",
+    textAlign: "center",
+    textDecoration: "none",
+    fontSize: "16px",
+    margin: "4px 2px",
+    cursor: "pointer",
+    marginTop: "40px",
+    marginBottom: "40px",
+    display: "block",
+  },
+
+  layout:{
+    display: "inline-block",
+    width: "50%",
+    height: "168px",
+    padding: "20px",
+    border: "1px solid #000",
+    backgroundColor: "#A21E21",
+    cursor: "pointer",
+  },
+
 };
 
 
