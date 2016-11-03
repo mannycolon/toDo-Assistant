@@ -126,7 +126,7 @@ var style = {
     display: "block",
   },
 
-  layout:{
+  userCardLayout:{
     display: "inline-block",
     width: "50%",
     height: "168px",
@@ -135,6 +135,25 @@ var style = {
     backgroundColor: "#A21E21",
     cursor: "pointer",
   },
+
+  ToDoBook:{
+    display: "inline-block",
+    width: "100%",
+    height: "168px",
+    padding: "20px",
+    border: "1px solid #000",
+    backgroundColor: "#7F142A",
+    cursor: "pointer",
+    textAlign: "center",
+    color: "#FFF"
+  },
+
+  inputBox:{
+    width: "200px",
+    marginBottom: "50px",
+    marginTop: "10px",
+    color: "#000",
+  }
 
 };
 

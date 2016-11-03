@@ -42,13 +42,16 @@ class CreateNewUser extends React.Component {
     return (
       <div>
         <center>
-          <img src="app/img/logo.png" width="160px" height="120px" style={{marginTop: "40px"}}/>
+          <img src="app/img/logo.png" width="160px" height="120px"
+               style={{marginTop: "40px"}}/>
           <h4>Please create a new user</h4>
           <form onSubmit={this.handleNewUser.bind(this)}>
-            <input type="text" placeholder="Please enter an username" ref="newUserNameInput"
-                   style={{width: "200px", marginBottom: "50px", marginTop: "10px", color: "#000"}}/>
+            <input type="text" placeholder="Please enter an username"
+                   ref="newUserNameInput" style={style.inputBox}/>
             {this.handleUsernameError()}
-            <button style={userButton} title="Click to create a new user">Create User</button>
+            <button style={userButton} title="Click to create a new user">
+              Create User
+            </button>
           </form>
         </center>
       </div>
