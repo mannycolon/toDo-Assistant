@@ -37,7 +37,6 @@ class ToDoStore extends EventEmitter {
   }
 
   getAllUserNames() {
-    console.log(this.todos);
     const foundAllUsernames = [];
     let dataArray = this.todos;
     for(var element in dataArray){
@@ -47,9 +46,8 @@ class ToDoStore extends EventEmitter {
   }
 
   getValidatedUsername(newUsername){
-    //TODO:  NEEDS TESTING
+    //TODO:  NEEDS more TESTING
     let foundUsername;
-    console.log(this.todos);
     if(this.todos.length == 0){
       console.log("it is zero");
     }else{
@@ -65,14 +63,12 @@ class ToDoStore extends EventEmitter {
   }
 
   createNewUsername(newUsername){
-    //TODO:  NEEDS TESTING
+    //TODO:  NEEDS more TESTING
       let newUserNameObj = new Object();
       newUserNameObj.username = newUsername;
       //initiating the todoLists array
       newUserNameObj.todoLists = [];
-      console.log(newUserNameObj);
       this.todos.push(newUserNameObj);
-      console.log(this.todos);
       this.saveData();
       this.emit("newUser");
   }
