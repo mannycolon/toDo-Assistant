@@ -1,6 +1,6 @@
 var style = {
 
-  sideline: {
+  sideline:{
     content: '',
     position: "absolute",
     top: "0px", bottom: "0px", left: "0px",
