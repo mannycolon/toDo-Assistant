@@ -37,6 +37,21 @@ class ToDosActions {
     });
   }
 
+  createNewToDoBook(newToDoBook){
+    dispatcher.dispatch({
+      type: "CREATE_NEW_TODOBOOK",
+      newToDoBook,
+    });
+  }
+
+  setModalVisibility(visibility){
+    console.log(visibility);
+    dispatcher.dispatch({
+      type: "MODAL_VISIBILITY",
+      visibility,
+    });
+  }
+
   reloadTodos() {
     // axios("http://someurl.com/somedataendpoint").then((data) => {
     //   console.log("got the data!", data);

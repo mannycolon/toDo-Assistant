@@ -1,5 +1,5 @@
 import React from "react";
-
+import ToDoActions from "../actions/ToDoActions";
 import style from "../../css/style.js";
 import Glyphicon  from 'react-bootstrap/lib/Glyphicon.js';
 
@@ -11,8 +11,12 @@ class SideBar extends React.Component {
     };
   }
 
-  click(){
+  createToDoBook(){
+    ToDoActions.setModalVisibility(true);
+  }
 
+  deleteToDoBook(){
+    ToDoActions.deleteToDoBook();
   }
 
   hover(){
@@ -36,10 +40,10 @@ class SideBar extends React.Component {
                 style={style.SideBarUserIcon} />
             </center>
           </div>
-          <SideBarButton handleButtonClick={this.click.bind(this)}
-                         value={"New List"} glyphicon="list-alt" title={"Create new list"}/>
-          <SideBarButton handleButtonClick={this.click.bind(this)}
-                         value={"Delete List"} glyphicon="trash" title={"Delete a list"}/>
+          <SideBarButton handleButtonClick={this.createToDoBook.bind(this)}
+                         value={"New List"} glyphicon="list-alt" title={"Create ToDoBook"}/>
+          <SideBarButton handleButtonClick={this.deleteToDoBook.bind(this)}
+                         value={"Delete List"} glyphicon="trash" title={"Delete ToDoBook"}/>
         </ul>
       </div>
     );

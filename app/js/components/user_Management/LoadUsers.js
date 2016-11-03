@@ -29,13 +29,15 @@ class LoadUsers extends React.Component {
 
   setCurrentUser(username){
     ToDoStore.setCurrentUserInStore(username);
+    console.log(username);
   }
 
   render() {
     const { users } = this.state;
     const userCards = users.map((user) => {
         const key = users.indexOf(user);
-        return <UserCardComponent key={key} username={user} setCurrentUser={this.setCurrentUser.bind(this)}/>;
+        return <UserCardComponent key={key} username={user}
+                                  setCurrentUser={this.setCurrentUser.bind(this)}/>;
     });
     return (
       <div>

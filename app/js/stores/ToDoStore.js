@@ -13,6 +13,8 @@ class ToDoStore extends EventEmitter {
     this.todos = [];
     this.currentUser = null;
     this.currentToDoBook = null;
+    this.modalVisibility = null;
+    console.log(this.currentUser);
   }
 
   readData(){
@@ -30,7 +32,7 @@ class ToDoStore extends EventEmitter {
     var file = './localStore/data.json';
     let data = this.appData;
     fs.outputJson(file, data, function (err) {
-      err ? console.log(err) : console.log("saved succesfully");
+      err ? console.log(err) : console.log("data saved succesfully");
       fs.readJson(file, function(err, data) {
       })
     })
@@ -43,11 +45,11 @@ class ToDoStore extends EventEmitter {
   getValidatedUsername(newUsername){
     //TODO:  NEEDS more TESTING
     let foundUsername;
-    while(this.appData.length !== 0){
+    if(this.appData.length !== 0){
       foundUsername = this.appData.find(user => user.username === newUsername);
     }
     if(!newUsername){
-      return ' Please enter an username.';
+      return ' Please enter username.';
     }else if (foundUsername && foundUsername.username === newUsername) {
       return " This username already exists";
     }else{
@@ -60,7 +62,7 @@ class ToDoStore extends EventEmitter {
       let newUserNameObj = new Object();
       newUserNameObj.username = newUsername;
       //initiating the todoLists array
-      newUserNameObj.todoLists = [];
+      newUserNameObj.toDoLists = [];
       this.appData.push(newUserNameObj);
       this.setCurrentUserInStore(newUserNameObj.username);
       this.saveData();
@@ -69,6 +71,7 @@ class ToDoStore extends EventEmitter {
 
   setCurrentUserInStore(username){
     this.currentUser = username;
+    console.log(this.currentUser);
     this.emit("currentUserUpdated");
   }
 
@@ -83,10 +86,12 @@ class ToDoStore extends EventEmitter {
 
   getValidatedNewToDoBook(newToDoBookName){
     //TODO:  NEEDS  TESTING
-    const foundUser;
-    const foundToDoBookName;
-      while(this.appData.length !== 0){
+    let foundUser;
+    let foundToDoBookName;
+      if(this.appData.length !== 0){
         foundUser = this.appData.find(users => users.username === this.currentUser);
+        console.log("current username" + this.currentUser);
+        console.log("founduser data" + foundUser);
         foundToDoBookName = foundUser.toDoLists.find(
           toDoListsElement => toDoListsElement.toDoListName === newToDoBookName
         );
@@ -94,7 +99,7 @@ class ToDoStore extends EventEmitter {
       if(!newToDoBookName){
         return ' Please enter a ToDoBook name.';
       }else if(foundToDoBookName && foundToDoBookName.toDoListName === newToDoBookName){
-        return " This ToDoBook name already exists";
+        return " This ToDoBook name already exists in your list of ToDoBooks";
       }else{
         return null;
       }
@@ -123,14 +128,23 @@ class ToDoStore extends EventEmitter {
     for(var element in foundToDoLists){
       foundAllToDoBooks.push(foundToDoLists[element].toDoListName);
     }
+    if(foundAllToDoBooks.length === 0){
+      this.setModalVisibilityInStore(true);
+      console.log("emitted event:noToDoBookFound");
+    }
     return foundAllToDoBooks;
   }
 
-///////////////////// guide
+  getModalVisibility(){
+    console.log("getting modal (getModalVisibility())");
+    return this.modalVisibility;
+  }
 
-
-
-////////////////////
+  setModalVisibilityInStore(visibility){
+    console.log(visibility + " from setModalVisibilityInStore");
+    this.modalVisibility = visibility;
+    this.emit("modalVisibility");
+  }
 
   createTodo(task) {
     const id = Date.now();
@@ -186,6 +200,16 @@ class ToDoStore extends EventEmitter {
       }
       case "CREATE_NEWUSER": {
         this.createNewUsername(action.username);
+        break;
+      }
+      case "CREATE_NEW_TODOBOOK": {
+        this.createNewToDoBook(action.newToDoBook);
+        break;
+      }
+      case "MODAL_VISIBILITY": {
+        console.log(action.visibility);
+        this.setModalVisibilityInStore(action.visibility);
+        console.log(this.modalVisibility);
         break;
       }
       //WILL PROBABLY REMOVE BELOW

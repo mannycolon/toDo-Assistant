@@ -50,7 +50,9 @@ class Welcome extends React.Component {
       return (
         <div>
           <center>
-            <h1 className="chalk" style={{color: "#A21E21", marginTop: "30px"}}>Welcome to ToDo Assistant</h1>
+            <h1 className="chalk" style={{color: "#A21E21", marginTop: "30px"}}>
+              Welcome to ToDo Assistant
+            </h1>
             <div style={style.box}>
               <CreateNewUser />
             </div>

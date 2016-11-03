@@ -1,5 +1,6 @@
 import React from "react";
-
+import ToDoActions from "../actions/ToDoActions";
+import ToDoStore from "../stores/ToDoStore";
 import style from "../../css/style.js";
 
 
@@ -10,6 +11,7 @@ class SideMenu extends React.Component {
       ToDoBooksArray: ToDoStore.getAllToDoBooks(),
     };
     this.getToDoBooks = this.getToDoBooks.bind(this);
+    console.log(this.state.ToDoBooksArray);
   }
 
   componentWillMount(){
@@ -26,14 +28,20 @@ class SideMenu extends React.Component {
     });
   }
 
+  showCreateBookModal(){
+    ToDoActions.setModalVisibility(true);
+  }
+
   render() {
     const { ToDoBooksArray } = this.state;//same as this.state.ToDoBooksArray
-    const ToDoBooks = ToDoBooksArray.map((ToDoBookName) => {
+    if(ToDoBooksArray.length === 0){
+      console.log("loading modal");
+      this.showCreateBookModal();
+    }
+      const ToDoBooks = ToDoBooksArray.map((ToDoBookName) => {
         const key = ToDoBooksArray.indexOf(ToDoBookName);
-        return <UserCardComponent key={key} ToDoBookName={ToDoBookName} />;
-    });
-
-
+        return <ToDoBook key={key} ToDoBookName={ToDoBookName} />;
+      });
     return (
       <div style={style.SideMenu}>
         <center><h3 className="chalk">To-Dos Lists</h3></center>
@@ -51,6 +59,7 @@ class ToDoBook extends React.Component {
       </div>
     );
   }
+}
 
 
 

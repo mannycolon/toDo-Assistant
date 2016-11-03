@@ -5,6 +5,7 @@ import ToDoStore from "../stores/ToDoStore";
 
 import SideBar from "./SideBar";
 import SideMenu from "./SideMenu";
+import AppModal from "./AppModal";
 import GenerateToDo from "./GenerateToDo";
 import Todo from "./Todo";
 import style from "../../css/style.js";
@@ -73,6 +74,7 @@ class ToDosComponents extends React.Component {
       <div style={{paddingLeft: "280px"}}>
         <SideBar />
         <SideMenu />
+        <AppModal />
         <center>
           <img src="app/img/logo.png" width="130px" height="90px" style={{margin: "20px"}}/>
           <GenerateToDo todos={this.state.todos} addTask={this.addTask.bind(this)} />

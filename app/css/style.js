@@ -149,11 +149,11 @@ var style = {
   },
 
   inputBox:{
-    width: "200px",
+    width: "40%",
     marginBottom: "50px",
-    marginTop: "10px",
+    marginTop: "50px",
     color: "#000",
-  }
+  },
 
 };
 

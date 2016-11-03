@@ -1,11 +1,11 @@
 import React from "react";
 
-//import ToDoActions from "../actions/ToDoActions";
-//import ToDoStore from "../stores/ToDoStore";
+import ToDoActions from "../actions/ToDoActions";
+import ToDoStore from "../stores/ToDoStore";
 import Button  from 'react-bootstrap/lib/Button.js';
 import Modal  from 'react-bootstrap/lib/Modal.js';
 import style from "../../css/style.js";
-
+import CreateToDoBook from "./CreateToDoBook";
 
 class AppModal extends React.Component {
   constructor() {
@@ -14,33 +14,36 @@ class AppModal extends React.Component {
       visibleModal: false
     };
     this.updateLoginModal = this.updateLoginModal.bind(this);
-    this.open = this.open.bind(this);
+    this.openModal = this.openModal.bind(this);
   }
 
   componentWillMount(){
-    ToDoStore.on("noToDoBookFound", this.open);
+    ToDoStore.on("modalVisibility", this.openModal);
     ToDoStore.on("modalVisibility", this.updateLoginModal);
   }
 
   componentWillUnmount(){
-    ToDoStore.removeListener("noToDoBookFound", this.open);
+    ToDoStore.removeListener("modalVisibility", this.openModal);
     ToDoStore.removeListener("modalVisibility", this.updateLoginModal);
   }
 
   updateLoginModal(){
-    this.setState({visibleModal: TodoStore.getModalVisibility()});
+    this.setState({visibleModal: ToDoStore.getModalVisibility()});
   }
 
-  open(){
-    this.setState({visibleModal: true);
+  openModal(){
+    console.log("open modal from open() from event noToDoBookFound");
+    ToDoActions.setModalVisibility(true);
   }
 
   close(){
-    ToDoActions.modalVisibility(false);
+    ToDoActions.setModalVisibility(false);
+    console.log("supposed to close modal now");
   }
 
   render(){
-    if(!this.state.visibleModal){
+    const { visibleModal } = this.state;
+    if(visibleModal === false){
       return (<div></div>);
     }else{
       return(

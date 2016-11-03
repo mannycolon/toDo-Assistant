@@ -46,10 +46,10 @@ class CreateNewUser extends React.Component {
                style={{marginTop: "40px"}}/>
           <h4>Please create a new user</h4>
           <form onSubmit={this.handleNewUser.bind(this)}>
-            <input type="text" placeholder="Please enter an username"
+            <input type="text" placeholder="Please enter username"
                    ref="newUserNameInput" style={style.inputBox}/>
             {this.handleUsernameError()}
-            <button style={userButton} title="Click to create a new user">
+            <button style={style.userButton} title="Click to create a new user">
               Create User
             </button>
           </form>
