@@ -32,6 +32,36 @@ class ToDoStore extends EventEmitter {
     })
   }
 
+  getAll() {
+    return this.todos;
+  }
+
+  getAllUserNames() {
+    return "this.todos.allusersnmaes";
+  }
+
+  getValidatedUsername(username){
+    //TODO:  Need to work on this code NOT DONE YET
+    if(!username){
+      return ' Please enter an username.';
+    }else if (username == usernamesInStorage) {
+      return "username already exists";
+    }else{
+      return null;
+    }
+  }
+
+  createNewUsername(newUsername){
+    //TODO:  Need to work on this code NOT DONE YET
+    let newUserNameObj = new Object();
+    newUserNameObj.username = newUsername;
+    //initiating the todoLists array
+    newUserNameObj.todoLists = [];
+    console.log(newUserNameObj);
+    this.todos.push(newUserNameObj);
+    console.log(this.todos);
+  }
+
   createTodo(task) {
     const id = Date.now();
     this.todos.push({
@@ -41,10 +71,6 @@ class ToDoStore extends EventEmitter {
     });
     this.saveData();
     this.emit("change");
-  }
-
-  getAll() {
-    return this.todos;
   }
 
   deleteTodo(idToDelete){
@@ -88,6 +114,11 @@ class ToDoStore extends EventEmitter {
         this.editTodo(action.oldTask, action.newTask);
         break;
       }
+      case "CREATE_NEWUSER": {
+        this.createNewUsername(action.username);
+        break;
+      }
+      //WILL PROBABLY REMOVE BELOW
       case "RECEIVE_TODOS": {
         this.todos = action.todos;
         this.emit("change");

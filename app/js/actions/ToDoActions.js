@@ -30,6 +30,13 @@ class ToDosActions {
     });
   }
 
+  createNewUsername(username){
+    dispatcher.dispatch({
+      type: "CREATE_NEWUSER",
+      username,
+    });
+  }
+
   reloadTodos() {
     // axios("http://someurl.com/somedataendpoint").then((data) => {
     //   console.log("got the data!", data);
