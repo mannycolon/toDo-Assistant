@@ -32,13 +32,11 @@ class AppModal extends React.Component {
   }
 
   openModal(){
-    console.log("open modal from open() from event noToDoBookFound");
     ToDoActions.setModalVisibility(true);
   }
 
   close(){
     ToDoActions.setModalVisibility(false);
-    console.log("supposed to close modal now");
   }
 
   render(){

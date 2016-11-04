@@ -45,7 +45,6 @@ class ToDosActions {
   }
 
   deleteToDoBook(ToDoBookToDelete){
-    console.log(ToDoBookToDelete);
     dispatcher.dispatch({
       type: "DELETE_TODOBOOK",
       ToDoBookToDelete,
