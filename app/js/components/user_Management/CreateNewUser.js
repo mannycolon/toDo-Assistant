@@ -3,21 +3,8 @@ import React from "react";
 import ToDoActions from "../../actions/ToDoActions";
 import ToDoStore from "../../stores/ToDoStore";
 import Glyphicon  from 'react-bootstrap/lib/Glyphicon.js';
+import style from "../../../css/style.js";
 
-var userButton = {
-  backgroundColor: "#158d44",
-  border: "none",
-  color: "white",
-  padding: "15px 32px",
-  textAlign: "center",
-  textDecoration: "none",
-  fontSize: "16px",
-  margin: "4px 2px",
-  cursor: "pointer",
-  marginTop: "40px",
-  marginBottom: "40px",
-  display: "block",
-}
 
 class CreateNewUser extends React.Component {
   constructor(props) {
@@ -55,13 +42,16 @@ class CreateNewUser extends React.Component {
     return (
       <div>
         <center>
-          <img src="app/img/logo.png" width="160px" height="120px" style={{marginTop: "40px"}}/>
+          <img src="app/img/logo.png" width="160px" height="120px"
+               style={{marginTop: "40px"}}/>
           <h4>Please create a new user</h4>
           <form onSubmit={this.handleNewUser.bind(this)}>
-            <input type="text" placeholder="Please enter an username" ref="newUserNameInput"
-                   style={{width: "200px", marginBottom: "50px", marginTop: "10px", color: "#000"}}/>
+            <input type="text" placeholder="Please enter username"
+                   ref="newUserNameInput" style={style.inputBox}/>
             {this.handleUsernameError()}
-            <button style={userButton} title="Click to create a new user">Create User</button>
+            <button style={style.userButton} title="Click to create a new user">
+              Create User
+            </button>
           </form>
         </center>
       </div>

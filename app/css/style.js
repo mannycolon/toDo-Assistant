@@ -34,20 +34,6 @@ var style = {
     backgroundSize: "30px 30px",
   },
 
-  SideMenu:{
-    backgroundColor: "#A21E21",
-    height: "100vh",
-    width: "210px",
-    left: "70px",
-    display: "inline-block",
-    position: "fixed",
-    zIndex: "99",
-    fontSize: "12px",
-    overflowY: "auto",
-    color: "#FFF",
-    padding: "15px",
-  },
-
   SideBar:{
     backgroundColor: "#000",
     height: "100vh",
@@ -60,11 +46,26 @@ var style = {
     fontSize: "12px",
     overflowY: "hidden",
   },
-  ul: {
-      margin: "0px",
-      padding: "0px",
+
+  SideMenu:{
+    backgroundColor: "#A21E21",
+    height: "100vh",
+    width: "210px",
+    left: "70px",
+    display: "inline-block",
+    position: "fixed",
+    zIndex: "99",
+    fontSize: "12px",
+    overflowY: "auto",
+    color: "#FFF",
+    paddingTop: "15px",
   },
-  li: {
+
+  ul:{
+    margin: "0px",
+    padding: "0px",
+  },
+  li:{
     display: "block",
     textAlign: "center",
     paddingTop: "10px",
@@ -74,8 +75,8 @@ var style = {
     userSelect: "none",
   },
   liHover:{
-    backgroundColor: "#FFF",
-    color: "#A21E21",
+    backgroundColor: "#A21E21",
+    color: "#FFF",
     display: "block",
     textAlign: "center",
     paddingTop: "10px",
@@ -91,24 +92,118 @@ var style = {
 
   glyphiconHover: {
     fontSize: "16px",
-    color: "#A21E21",
+    color: "#FFF",
   },
 
   SideBarUserIcon:{
     width: "30px",
     height: "30px",
     marginTop: "20px",
-    marginBottom: "20px",
+    marginBottom: "2px",
   },
   imgHover:{
-    backgroundColor: "#FFF",
+    backgroundColor: "#A21E21",
     cursor: "pointer",
     alignContent: "center",
+    color: "#FFF",
   },
 
   imgUnHover:{
     cursor: "pointer",
     alignContent: "center",
+    color: "#FFF",
+  },
+
+  userButton:{
+    backgroundColor: "#158d44",
+    border: "none",
+    color: "white",
+    padding: "15px 32px",
+    textAlign: "center",
+    textDecoration: "none",
+    fontSize: "16px",
+    margin: "4px 2px",
+    cursor: "pointer",
+    marginTop: "40px",
+    marginBottom: "40px",
+    display: "block",
+  },
+
+  userCardLayout:{
+    display: "inline-block",
+    width: "50%",
+    height: "168px",
+    padding: "20px",
+    border: "1px solid #000",
+    backgroundColor: "#A21E21",
+    cursor: "pointer",
+  },
+
+  ToDoBook:{
+    display: "inline-block",
+    width: "100%",
+    height: "75px",
+    padding: "5px",
+    border: "1px solid #000",
+    backgroundColor: "#7F142A",
+    cursor: "pointer",
+    textAlign: "center",
+    color: "#FFF",
+    boxSizing: "border-box",
+  },
+
+  inputBox:{
+    width: "40%",
+    marginBottom: "50px",
+    marginTop: "50px",
+    color: "#000",
+  },
+
+  taskInputBox:{
+    width: "40%",
+    borderStyle: "solid",
+    borderTopLeftRadius: "4px",
+    borderBottomLeftRadius: "4px",
+    height: "31px",
+    borderColor: "#7F142A",
+  },
+
+  inputButton:{
+    backgroundColor: "#158d44",
+    border: "none",
+    borderTopRightRadius: "4px",
+    borderBottomRightRadius: "4px",
+    borderColor: "#158d44",
+    borderStyle: "solid",
+  },
+
+  box:{
+    margin: "0px",
+    marginTop: "20px",
+    marginLeft: "15px",
+    position: "relative",
+    width: "400px",
+    height: "504px",
+    background: "#000000",
+    boxShadow: "0 15px 10px #777",
+    overflow: "auto",
+    display: "inline-block",
+    textAlign: "left",
+    color: "#FFFFFF",
+  },
+
+  openButton:{
+    backgroundColor: "#158d44",
+    border: "none",
+    color: "#FFF",
+    cursor: "pointer",
+  },
+
+  deleteButton:{
+    backgroundColor: "#FFF",
+    border: "none",
+    color: "#7F142A",
+    cursor: "pointer",
   },
 
 };
