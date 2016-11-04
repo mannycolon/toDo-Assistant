@@ -11,7 +11,6 @@ class SideMenu extends React.Component {
       ToDoBooksArray: ToDoStore.getAllToDoBooks(),
     };
     this.getToDoBooks = this.getToDoBooks.bind(this);
-    console.log(this.state.ToDoBooksArray);
   }
 
   componentWillMount(){
@@ -23,28 +22,35 @@ class SideMenu extends React.Component {
   }
 
   getToDoBooks(){
-    this.setState({
-      ToDoBooks: ToDoStore.getAllToDoBooks(),
-    });
+    this.setState({ToDoBooksArray: ToDoStore.getAllToDoBooks()});
+  }
+
+  deleteToDoBook(ToDoBookName){
+    ToDoActions.deleteToDoBook(ToDoBookName);
   }
 
   showCreateBookModal(){
     ToDoActions.setModalVisibility(true);
   }
 
+  selectToDoBook(currentToDoBookName){
+    ToDoStore.setCurrentToDoBook(currentToDoBookName);
+  }
+
   render() {
     const { ToDoBooksArray } = this.state;//same as this.state.ToDoBooksArray
     if(ToDoBooksArray.length === 0){
-      console.log("loading modal");
       this.showCreateBookModal();
     }
       const ToDoBooks = ToDoBooksArray.map((ToDoBookName) => {
         const key = ToDoBooksArray.indexOf(ToDoBookName);
-        return <ToDoBook key={key} ToDoBookName={ToDoBookName} />;
+        return <ToDoBook key={key} ToDoBookName={ToDoBookName}
+                selectToDoBook={this.selectToDoBook.bind(this)}
+                deleteToDoBook={this.deleteToDoBook.bind(this)}/>;
       });
     return (
       <div style={style.SideMenu}>
-        <center><h3 className="chalk">To-Dos Lists</h3></center>
+        <center><h3 className="chalk">ToDo Books</h3></center>
         {ToDoBooks}
       </div>
     );
@@ -55,7 +61,16 @@ class ToDoBook extends React.Component {
   render() {
     return (
       <div style={style.ToDoBook}>
-        <h3>{this.props.ToDoBookName}</h3>
+        <span style={{fontSize: "20px"}}>{this.props.ToDoBookName}</span>
+        <br />
+        <button style={style.deleteButton}
+                onClick={this.props.deleteToDoBook.bind(this, this.props.ToDoBookName)}>
+          Delete
+        </button>
+        <button style={style.openButton}
+                onClick={this.props.selectToDoBook.bind(this, this.props.ToDoBookName)}>
+          Open
+        </button>
       </div>
     );
   }

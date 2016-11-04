@@ -4,24 +4,7 @@ import ToDoStore from "../stores/ToDoStore";
 import CreateNewUser from './user_Management/CreateNewUser.js';
 import LoadUsers from './user_Management/LoadUsers.js';
 import ToDosComponents from "./ToDosComponents";
-
-var style = {
-  box:{
-    margin: "0px",
-    marginTop: "20px",
-    marginLeft: "15px",
-    position: "relative",
-    width: "400px",
-    height: "504px",
-    background: "#000000",
-    boxShadow: "0 15px 10px #777",
-    overflow: "auto",
-    display: "inline-block",
-    textAlign: "left",
-    color: "#FFFFFF"
-  },
-
-}
+import style from "../../css/style.js";
 
 class Welcome extends React.Component {
   constructor(props) {
@@ -33,10 +16,12 @@ class Welcome extends React.Component {
   }
   componentWillMount(){
     ToDoStore.on("currentUserUpdated", this.updateVisibility);
+    ToDoStore.on("returnToWelcomePage", this.updateVisibility);
   }
 
   componentWillUnmount(){
     ToDoStore.removeListener("currentUserUpdated", this.updateVisibility);
+    ToDoStore.removeListener("returnToWelcomePage", this.updateVisibility);
   }
 
   updateVisibility(){

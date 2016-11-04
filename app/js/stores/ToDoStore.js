@@ -9,17 +9,15 @@ class ToDoStore extends EventEmitter {
   constructor() {
     super()
     this.appData = this.readData();
-    //TODO:work on todos data
-    this.todos = [];
+    this.currentTodos = this.getCurrentTasks();
     this.currentUser = null;
     this.currentToDoBook = null;
     this.modalVisibility = null;
-    console.log(this.currentUser);
   }
 
   readData(){
-    var file = './localStore/data.json';
-    var data = readJSON.sync( file, 'utf8' );
+    let file = './localStore/data.json';
+    let data = readJSON.sync( file, 'utf8' );
     if(Array.isArray(data)){
       return data;
     }else{
@@ -29,7 +27,7 @@ class ToDoStore extends EventEmitter {
   }
 
   saveData(){
-    var file = './localStore/data.json';
+    let file = './localStore/data.json';
     let data = this.appData;
     fs.outputJson(file, data, function (err) {
       err ? console.log(err) : console.log("data saved succesfully");
@@ -39,11 +37,10 @@ class ToDoStore extends EventEmitter {
   }
 
   getAll() {
-    return this.todos;
+    return this.currentTodos;
   }
 
   getValidatedUsername(newUsername){
-    //TODO:  NEEDS more TESTING
     let foundUsername;
     if(this.appData.length !== 0){
       foundUsername = this.appData.find(user => user.username === newUsername);
@@ -58,7 +55,6 @@ class ToDoStore extends EventEmitter {
   }
 
   createNewUsername(newUsername){
-    //TODO:  NEEDS more TESTING
       let newUserNameObj = new Object();
       newUserNameObj.username = newUsername;
       //initiating the todoLists array
@@ -71,27 +67,26 @@ class ToDoStore extends EventEmitter {
 
   setCurrentUserInStore(username){
     this.currentUser = username;
-    console.log(this.currentUser);
     this.emit("currentUserUpdated");
   }
 
   getAllUserNames() {
     const foundAllUsernames = [];
     let dataArray = this.appData;
-    for(var element in dataArray){
+    for(let element in dataArray){
       foundAllUsernames.push(dataArray[element].username);
     }
     return foundAllUsernames;
   }
+  getCurrentUser(){
+    return this.currentUser;
+  }
 
   getValidatedNewToDoBook(newToDoBookName){
-    //TODO:  NEEDS  TESTING
     let foundUser;
     let foundToDoBookName;
       if(this.appData.length !== 0){
         foundUser = this.appData.find(users => users.username === this.currentUser);
-        console.log("current username" + this.currentUser);
-        console.log("founduser data" + foundUser);
         foundToDoBookName = foundUser.toDoLists.find(
           toDoListsElement => toDoListsElement.toDoListName === newToDoBookName
         );
@@ -106,49 +101,79 @@ class ToDoStore extends EventEmitter {
   }
 
   createNewToDoBook(newToDoBookName){
-    //TODO:  NEEDS  TESTING
     const foundUser = this.appData.find(users => users.username === this.currentUser);
     let newToDoListObj = new Object();
     newToDoListObj.toDoListName = newToDoBookName;
     newToDoListObj.tasks = [];
     foundUser.toDoLists.push(newToDoListObj);
+    this.emit("newTodoBook");
     this.setCurrentToDoBook(newToDoListObj.toDoListName);
     this.saveData();
+  }
+
+  deleteToDoBookInStore(ToDoBookToDel){
+    const foundUser = this.appData.find(users => users.username === this.currentUser);
+    const foundToDoList = foundUser.toDoLists.find(
+                toDoListsElement => toDoListsElement.toDoListName === ToDoBookToDel);
+    foundUser.toDoLists.splice(foundUser.toDoLists.indexOf(foundToDoList), 1);
     this.emit("newTodoBook");
+    this.saveData();
   }
 
   setCurrentToDoBook(currentToDoBook){
     this.currentToDoBook = currentToDoBook;
+    this.emit("currentToDoBookUpdated");
+  }
+
+  getCurrenToDoBook(){
+    return this.currentToDoBook;
   }
 
   getAllToDoBooks(){
-    const foundAllToDoBooks = [];
+    let foundAllToDoBooks = [];
     const foundUser = this.appData.find(users => users.username === this.currentUser);
     const foundToDoLists = foundUser.toDoLists;
-    for(var element in foundToDoLists){
+    for(let element in foundToDoLists){
       foundAllToDoBooks.push(foundToDoLists[element].toDoListName);
-    }
-    if(foundAllToDoBooks.length === 0){
-      this.setModalVisibilityInStore(true);
-      console.log("emitted event:noToDoBookFound");
     }
     return foundAllToDoBooks;
   }
 
+  getCurrentTasks(){
+    let foundTasks = [];
+    if(this.currentUser){
+      const foundUser = this.appData.find(users => users.username === this.currentUser);
+      if(this.currentToDoBook){
+        const foundToDoBookName = foundUser.toDoLists.find(toDoBooks => toDoBooks.toDoListName === this.currentToDoBook);
+        foundTasks =  foundToDoBookName.tasks;
+      }
+    }
+    return foundTasks;
+  }
+
   getModalVisibility(){
-    console.log("getting modal (getModalVisibility())");
     return this.modalVisibility;
   }
 
   setModalVisibilityInStore(visibility){
-    console.log(visibility + " from setModalVisibilityInStore");
     this.modalVisibility = visibility;
     this.emit("modalVisibility");
   }
 
+  goBackToWelcomePage(){
+    this.currentUser = null;
+    this.currentToDoBook = null;
+    this.modalVisibility = null;
+    this.emit("returnToWelcomePage");
+  }
+
   createTodo(task) {
+    let foundToDoLists;
     const id = Date.now();
-    this.todos.push({
+    const foundUser = this.appData.find(users => users.username === this.currentUser);
+    foundToDoLists = foundUser.toDoLists.find(
+                toDoListsElement => toDoListsElement.toDoListName === this.currentToDoBook);
+    foundToDoLists.tasks.push({
       id,
       task,
       isDone: false,
@@ -158,23 +183,33 @@ class ToDoStore extends EventEmitter {
   }
 
   deleteTodo(idToDelete){
-    const foundTodo = this.todos.find(todo => todo.id === idToDelete);
-    this.todos.splice( this.todos.indexOf(foundTodo), 1 );
+    const foundUser = this.appData.find(users => users.username === this.currentUser);
+    const foundToDoLists = foundUser.toDoLists.find(
+                toDoListsElement => toDoListsElement.toDoListName === this.currentToDoBook);
+    const foundTasks =  foundToDoLists.tasks;
+    const foundTodo = foundTasks.find(todo => todo.id === idToDelete);
+    foundTasks.splice( foundTasks.indexOf(foundTodo), 1 );
     this.saveData();
     this.emit("change");
   }
 
   completeTodo(id){
-    //using the find() method to find the first element in
-    //the array that satisfies the callback (es6 arrrow function)
-    const foundTodo = this.todos.find(todo => todo.id === id);
+    const foundUser = this.appData.find(users => users.username === this.currentUser);
+    const foundToDoLists = foundUser.toDoLists.find(
+                toDoListsElement => toDoListsElement.toDoListName === this.currentToDoBook);
+    const foundTaks =  foundToDoLists.tasks;
+    const foundTodo = foundTaks.find(todo => todo.id === id);
     foundTodo.isDone = !foundTodo.isDone;
     this.saveData();
     this.emit("change");
   }
 
   editTodo(oldTask, newTask){
-    const foundTodo = this.todos.find(todo => todo.task === oldTask);
+    const foundUser = this.appData.find(users => users.username === this.currentUser);
+    const foundToDoLists = foundUser.toDoLists.find(
+                toDoListsElement => toDoListsElement.toDoListName === this.currentToDoBook);
+    const foundTaks =  foundToDoLists.tasks;
+    const foundTodo = foundTaks.find(todo => todo.task === oldTask);
     foundTodo.task = newTask;
     this.saveData();
     this.emit("change");
@@ -206,16 +241,12 @@ class ToDoStore extends EventEmitter {
         this.createNewToDoBook(action.newToDoBook);
         break;
       }
-      case "MODAL_VISIBILITY": {
-        console.log(action.visibility);
-        this.setModalVisibilityInStore(action.visibility);
-        console.log(this.modalVisibility);
+      case "DELETE_TODOBOOK": {
+        this.deleteToDoBookInStore(action.ToDoBookToDelete);
         break;
       }
-      //WILL PROBABLY REMOVE BELOW
-      case "RECEIVE_TODOS": {
-        this.todos = action.todos;
-        this.emit("change");
+      case "MODAL_VISIBILITY": {
+        this.setModalVisibilityInStore(action.visibility);
         break;
       }
     }

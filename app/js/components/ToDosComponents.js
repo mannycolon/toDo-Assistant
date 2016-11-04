@@ -14,23 +14,33 @@ class ToDosComponents extends React.Component {
   constructor() {
     super();
     this.state = {
-      todos: ToDoStore.getAll(),
+      todos: ToDoStore.getCurrentTasks(),
+      currentToDoBook: null,
     };
     this.getTodos = this.getTodos.bind(this);
+    this.getCurrenToDoBook = this.getCurrenToDoBook.bind(this);
   }
 
   componentWillMount(){
     ToDoStore.on("change", this.getTodos);
+    ToDoStore.on("currentToDoBookUpdated", this.getCurrenToDoBook);
+
   }
 
   componentWillUnmount(){
     ToDoStore.removeListener("change", this.getTodos);
+    ToDoStore.removeListener("currentToDoBookUpdated", this.getCurrenToDoBook);
   }
 
   getTodos(){
     this.setState({
-      todos: ToDoStore.getAll(),
+      todos: ToDoStore.getCurrentTasks(),
     });
+  }
+
+  getCurrenToDoBook(){
+    this.setState({currentToDoBook: ToDoStore.getCurrenToDoBook()});
+    this.getTodos();
   }
 
   reloadTodos(){
@@ -62,7 +72,6 @@ class ToDosComponents extends React.Component {
                                              deleteTask={this.deleteTask.bind(this)} />;
       }
     });
-
     const DoneTasks = todos.map((todo) => {
       while(todo.isDone){
         return <Todo key={todo.id} {...todo} completeTask={this.completeTask.bind(this)}
@@ -77,7 +86,8 @@ class ToDosComponents extends React.Component {
         <AppModal />
         <center>
           <img src="app/img/logo.png" width="130px" height="90px" style={{margin: "20px"}}/>
-          <GenerateToDo todos={this.state.todos} addTask={this.addTask.bind(this)} />
+          <GenerateToDo todos={this.state.todos} addTask={this.addTask.bind(this)}
+                          currentToDoBook={this.state.currentToDoBook}/>
           <div style={style.paper}>
             <div style={style.sideline}></div>
             <div style={style.paperContent}>

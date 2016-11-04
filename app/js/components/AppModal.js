@@ -18,12 +18,12 @@ class AppModal extends React.Component {
   }
 
   componentWillMount(){
-    ToDoStore.on("modalVisibility", this.openModal);
+    ToDoStore.on("noToDoBookFound", this.openModal);
     ToDoStore.on("modalVisibility", this.updateLoginModal);
   }
 
   componentWillUnmount(){
-    ToDoStore.removeListener("modalVisibility", this.openModal);
+    ToDoStore.removeListener("noToDoBookFound", this.openModal);
     ToDoStore.removeListener("modalVisibility", this.updateLoginModal);
   }
 

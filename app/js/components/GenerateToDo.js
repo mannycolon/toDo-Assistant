@@ -1,6 +1,8 @@
 import React from "react";
-
+import ToDoActions from "../actions/ToDoActions";
 import Glyphicon  from 'react-bootstrap/lib/Glyphicon.js';
+import style from "../../css/style.js";
+
 
 class GenerateToDo extends React.Component{
   constructor(){
@@ -42,22 +44,31 @@ class GenerateToDo extends React.Component{
           </div>;
   }
 
+
   render(){
-    return(
-      <form onSubmit={this.handleNewToDo.bind(this)}>
-        <input type="text" placeholder=" Add new item to your to-do list"
-               ref="addToDoInput" style={{width: "300px", borderStyle: "solid",
-               borderTopLeftRadius: "4px", borderBottomLeftRadius: "4px",
-               height: "31px", borderColor: "#7F142A"}}/>
-        <button style={{backgroundColor: "#158d44", border: "none",
-                borderTopRightRadius: "4px", borderBottomRightRadius: "4px",
-                borderColor: "#158d44", borderStyle: "solid"}}
-                title="Add new to-do">
-          <Glyphicon glyph="plus-sign" style={{color: "#FFFFFF"}}/>
-        </button>
-        {this.handleError()}
-      </form>
-    );
+    if(!this.props.currentToDoBook){
+      return (
+        <div style={{border: "1px solid #158d44", padding: "15px", height: "150px", borderLeft: "none", borderRight: "none"}}>
+          <div style={{color: "#158d44"}}>
+            <Glyphicon glyph="info-sign" style={{color: "#158d44", fontSize: "24px"}}/>
+            Please create or select a ToDo book to start adding tasks
+          </div>
+        </div>
+      );
+    }else{
+      return(
+        <form onSubmit={this.handleNewToDo.bind(this)}>
+          <span className="chalk" style={{margin: "40px", color: "#7F142A"}}>Current ToDoBook: {this.props.currentToDoBook}</span>
+          <br />
+          <input type="text" placeholder=" Add new item to your to-do list"
+                 ref="addToDoInput" style={style.taskInputBox}/>
+          <button style={style.inputButton} title="Add new to-do">
+            <Glyphicon glyph="plus-sign" style={{color: "#FFFFFF"}}/>
+          </button>
+          {this.handleError()}
+        </form>
+      );
+    }
   }
 }
 

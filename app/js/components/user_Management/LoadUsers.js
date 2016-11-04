@@ -29,7 +29,6 @@ class LoadUsers extends React.Component {
 
   setCurrentUser(username){
     ToDoStore.setCurrentUserInStore(username);
-    console.log(username);
   }
 
   render() {

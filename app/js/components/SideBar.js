@@ -1,5 +1,6 @@
 import React from "react";
 import ToDoActions from "../actions/ToDoActions";
+import ToDoStore from "../stores/ToDoStore";
 import style from "../../css/style.js";
 import Glyphicon  from 'react-bootstrap/lib/Glyphicon.js';
 
@@ -7,16 +8,13 @@ class SideBar extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      imgHover: false
+      imgHover: false,
+      currentUser: ToDoStore.getCurrentUser(),
     };
   }
 
   createToDoBook(){
     ToDoActions.setModalVisibility(true);
-  }
-
-  deleteToDoBook(){
-    ToDoActions.deleteToDoBook();
   }
 
   hover(){
@@ -27,23 +25,26 @@ class SideBar extends React.Component {
     this.setState({imgHover: false});
   }
 
+  returnToWelcomePage(){
+    ToDoStore.goBackToWelcomePage();
+  }
+
   render() {
     const linkStyle = this.state.imgHover ? style.imgHover : style.imgUnHover;
-
     return (
       <div style={style.SideBar}>
         <ul style={style.ul}>
           <div style={linkStyle} onMouseEnter={this.hover.bind(this)}
-               onMouseLeave={this.unHover.bind(this)} title="Switch user">
+               onMouseLeave={this.unHover.bind(this)}
+               onClick={this.returnToWelcomePage.bind(this)} title="Switch user">
             <center>
             <img src="app/img/userIcon.png"
-                style={style.SideBarUserIcon} />
+                style={style.SideBarUserIcon} /><br />
+                {this.state.currentUser}
             </center>
           </div>
           <SideBarButton handleButtonClick={this.createToDoBook.bind(this)}
-                         value={"New List"} glyphicon="list-alt" title={"Create ToDoBook"}/>
-          <SideBarButton handleButtonClick={this.deleteToDoBook.bind(this)}
-                         value={"Delete List"} glyphicon="trash" title={"Delete ToDoBook"}/>
+                         value={"New ToDoBook"} glyphicon="list-alt" title={"Create ToDoBook"}/>
         </ul>
       </div>
     );
