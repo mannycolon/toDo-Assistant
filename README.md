@@ -6,6 +6,7 @@ to-do list application.
 Web Technologies
 ---
 - Javascript (Programming Language)
+  -Javascript ES6 is used consistantly throughout the codebase. 
 - NodeJs (JavaScript runtime)
 - ReactJS
 - Electron (Framework)
@@ -77,4 +78,6 @@ npm run start
 ```
 This should open the app.
 
-- Make sure you check the package.json file to make sure all dependencies and devDependencies were download to a node_modules folder if you get any error feel free to create an issue at https://github.com/mannycolon/toDo-Assistant/issues
+- Make sure you look at the package.json file to see if all dependencies and devDependencies were download to a node_modules folder.
+
+- If you get any error or bugs feel free to create an issue at https://github.com/mannycolon/toDo-Assistant/issues
