@@ -116,8 +116,12 @@ class ToDoStore extends EventEmitter {
     const foundToDoList = foundUser.toDoLists.find(
                 toDoListsElement => toDoListsElement.toDoListName === ToDoBookToDel);
     foundUser.toDoLists.splice(foundUser.toDoLists.indexOf(foundToDoList), 1);
-    this.emit("newTodoBook");
+    if(this.currentToDoBook === ToDoBookToDel){
+      this.currentToDoBook = null;
+    }
     this.saveData();
+    this.emit("newTodoBook");
+    this.emit("currentToDoBookUpdated");
   }
 
   setCurrentToDoBook(currentToDoBook){
@@ -135,6 +139,9 @@ class ToDoStore extends EventEmitter {
     const foundToDoLists = foundUser.toDoLists;
     for(let element in foundToDoLists){
       foundAllToDoBooks.push(foundToDoLists[element].toDoListName);
+    }
+    if(foundAllToDoBooks.length === 0){
+      this.setModalVisibilityInStore(true);
     }
     return foundAllToDoBooks;
   }
