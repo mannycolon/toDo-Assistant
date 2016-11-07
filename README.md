@@ -5,20 +5,19 @@ to-do list application.
 
 Web Technologies
 ---
-- Javascript (Programming Language)
-⋅⋅*Javascript ES6 is used consistantly throughout the codebase. 
-- NodeJs (JavaScript runtime)
-- ReactJS
-- Electron (Framework)
-- Flux (Application architecture)
-- Babel (Compiler)
+* Javascript (Programming Language)
+⋅⋅.*Javascript ES6 is used consistantly throughout the codebase.   
+* NodeJs (JavaScript runtime)
+* ReactJS
+* Electron (Framework)
+* Flux (Application architecture)
+* Babel (Compiler)
 
 Features
 ---
 - Multi-user.
 
-- Categorizing items by toDo Books. 
-
+- Categorizing items by toDo Books.
 - Add, edit, remove or complete a to-do items.
 
 - Data persistence (Data is saved locally in the file system in a json file).
