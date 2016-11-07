@@ -5,6 +5,7 @@
 #############
 ## node modules (removed it so i could upload to github just in case its needed for users)
 #############
+/node_modules/
 
 
 # Compiled source #

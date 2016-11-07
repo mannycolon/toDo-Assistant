@@ -34,6 +34,7 @@ class ToDoStore extends EventEmitter {
       fs.readJson(file, function(err, data) {
       })
     })
+    this.emit("change");
   }
 
   getAll() {
@@ -116,8 +117,12 @@ class ToDoStore extends EventEmitter {
     const foundToDoList = foundUser.toDoLists.find(
                 toDoListsElement => toDoListsElement.toDoListName === ToDoBookToDel);
     foundUser.toDoLists.splice(foundUser.toDoLists.indexOf(foundToDoList), 1);
-    this.emit("newTodoBook");
+    if(this.currentToDoBook === ToDoBookToDel){
+      this.currentToDoBook = null;
+    }
     this.saveData();
+    this.emit("newTodoBook");
+    this.emit("currentToDoBookUpdated");
   }
 
   setCurrentToDoBook(currentToDoBook){
@@ -135,6 +140,9 @@ class ToDoStore extends EventEmitter {
     const foundToDoLists = foundUser.toDoLists;
     for(let element in foundToDoLists){
       foundAllToDoBooks.push(foundToDoLists[element].toDoListName);
+    }
+    if(foundAllToDoBooks.length === 0){
+      this.setModalVisibilityInStore(true);
     }
     return foundAllToDoBooks;
   }
@@ -179,7 +187,6 @@ class ToDoStore extends EventEmitter {
       isDone: false,
     });
     this.saveData();
-    this.emit("change");
   }
 
   deleteTodo(idToDelete){
@@ -190,7 +197,6 @@ class ToDoStore extends EventEmitter {
     const foundTodo = foundTasks.find(todo => todo.id === idToDelete);
     foundTasks.splice( foundTasks.indexOf(foundTodo), 1 );
     this.saveData();
-    this.emit("change");
   }
 
   completeTodo(id){
@@ -201,7 +207,6 @@ class ToDoStore extends EventEmitter {
     const foundTodo = foundTaks.find(todo => todo.id === id);
     foundTodo.isDone = !foundTodo.isDone;
     this.saveData();
-    this.emit("change");
   }
 
   editTodo(oldTask, newTask){
@@ -212,7 +217,6 @@ class ToDoStore extends EventEmitter {
     const foundTodo = foundTaks.find(todo => todo.task === oldTask);
     foundTodo.task = newTask;
     this.saveData();
-    this.emit("change");
   }
 
   handleActions(action) {

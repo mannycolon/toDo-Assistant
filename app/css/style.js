@@ -146,7 +146,6 @@ var style = {
     padding: "5px",
     border: "1px solid #000",
     backgroundColor: "#7F142A",
-    cursor: "pointer",
     textAlign: "center",
     color: "#FFF",
     boxSizing: "border-box",

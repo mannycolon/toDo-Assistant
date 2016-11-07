@@ -46,7 +46,7 @@ class GenerateToDo extends React.Component{
 
 
   render(){
-    if(!this.props.currentToDoBook){
+    if(!this.props.currentToDoBookName){
       return (
         <div style={{border: "1px solid #158d44", padding: "15px", height: "150px", borderLeft: "none", borderRight: "none"}}>
           <div style={{color: "#158d44"}}>
@@ -58,7 +58,7 @@ class GenerateToDo extends React.Component{
     }else{
       return(
         <form onSubmit={this.handleNewToDo.bind(this)}>
-          <span className="chalk" style={{margin: "40px", color: "#7F142A"}}>Current ToDoBook: {this.props.currentToDoBook}</span>
+          <span className="chalk" style={{margin: "40px", color: "#7F142A"}}>Current ToDoBook: {this.props.currentToDoBookName}</span>
           <br />
           <input type="text" placeholder=" Add new item to your to-do list"
                  ref="addToDoInput" style={style.taskInputBox}/>
