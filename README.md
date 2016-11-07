@@ -6,7 +6,7 @@ to-do list application.
 Web Technologies
 ---
 - Javascript (Programming Language)
-  ⋅⋅*Javascript ES6 is used consistantly throughout the codebase. 
+⋅⋅*Javascript ES6 is used consistantly throughout the codebase. 
 - NodeJs (JavaScript runtime)
 - ReactJS
 - Electron (Framework)
