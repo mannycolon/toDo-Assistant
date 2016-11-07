@@ -73,7 +73,7 @@ This will install all dependencies
 **To run/open the app**
 ---
 ```
-npm run start,
+npm run start
 ```
 This should open the app.
 
