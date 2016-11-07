@@ -34,6 +34,7 @@ class ToDoStore extends EventEmitter {
       fs.readJson(file, function(err, data) {
       })
     })
+    this.emit("change");
   }
 
   getAll() {
@@ -186,7 +187,6 @@ class ToDoStore extends EventEmitter {
       isDone: false,
     });
     this.saveData();
-    this.emit("change");
   }
 
   deleteTodo(idToDelete){
@@ -197,7 +197,6 @@ class ToDoStore extends EventEmitter {
     const foundTodo = foundTasks.find(todo => todo.id === idToDelete);
     foundTasks.splice( foundTasks.indexOf(foundTodo), 1 );
     this.saveData();
-    this.emit("change");
   }
 
   completeTodo(id){
@@ -208,7 +207,6 @@ class ToDoStore extends EventEmitter {
     const foundTodo = foundTaks.find(todo => todo.id === id);
     foundTodo.isDone = !foundTodo.isDone;
     this.saveData();
-    this.emit("change");
   }
 
   editTodo(oldTask, newTask){
@@ -219,7 +217,6 @@ class ToDoStore extends EventEmitter {
     const foundTodo = foundTaks.find(todo => todo.task === oldTask);
     foundTodo.task = newTask;
     this.saveData();
-    this.emit("change");
   }
 
   handleActions(action) {
