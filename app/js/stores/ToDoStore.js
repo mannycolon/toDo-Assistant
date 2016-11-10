@@ -107,9 +107,9 @@ class ToDoStore extends EventEmitter {
     newToDoListObj.toDoListName = newToDoBookName;
     newToDoListObj.tasks = [];
     foundUser.toDoLists.push(newToDoListObj);
-    this.emit("newTodoBook");
-    this.setCurrentToDoBook(newToDoListObj.toDoListName);
     this.saveData();
+    this.setCurrentToDoBook(newToDoListObj.toDoListName);
+    this.emit("newTodoBook");
   }
 
   deleteToDoBookInStore(ToDoBookToDel){
