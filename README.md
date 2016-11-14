@@ -18,7 +18,7 @@ Features
 - Multi-user.
 
 - Categorizing items by toDo Books.
-- Add, edit, remove or complete a to-do items.
+- Add, edit, remove or complete to-do items.
 
 - Data persistence (Data is saved locally in the file system in a json file).
 
