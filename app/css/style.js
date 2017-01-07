@@ -45,6 +45,7 @@ var style = {
     zIndex: "99",
     fontSize: "12px",
     overflowY: "hidden",
+    top: "0px",
   },
 
   SideMenu:{
@@ -59,6 +60,7 @@ var style = {
     overflowY: "auto",
     color: "#FFF",
     paddingTop: "15px",
+    top: "0px",
   },
 
   ul:{

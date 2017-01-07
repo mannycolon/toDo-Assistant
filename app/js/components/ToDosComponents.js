@@ -92,7 +92,8 @@ class ToDosComponents extends React.Component {
         <SideMenu toDoBooksNamesArray={this.state.toDoBooksNamesArray}/>
         <AppModal />
         <div style={{marginLeft: "26%", width: "74%"}}>
-          <img src="app/img/logo.png" width="130px" height="90px" style={{margin: "20px"}}/>
+          <img src="app/img/logo.png" width="130px" height="90px"
+          style={{margin: "20px", marginLeft: "auto", marginRight: "auto", display: "block"}}/>
           <GenerateToDo todos={this.state.todos} addTask={this.addTask.bind(this)}
                           currentToDoBookName={this.state.currentToDoBookName}/>
           <div style={style.paper}>
