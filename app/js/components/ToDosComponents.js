@@ -87,11 +87,11 @@ class ToDosComponents extends React.Component {
       }
     });
     return (
-      <div style={{paddingLeft: "280px"}}>
+      <div>
         <SideBar />
         <SideMenu toDoBooksNamesArray={this.state.toDoBooksNamesArray}/>
         <AppModal />
-        <center>
+        <div style={{marginLeft: "26%", width: "74%"}}>
           <img src="app/img/logo.png" width="130px" height="90px" style={{margin: "20px"}}/>
           <GenerateToDo todos={this.state.todos} addTask={this.addTask.bind(this)}
                           currentToDoBookName={this.state.currentToDoBookName}/>
@@ -113,7 +113,7 @@ class ToDosComponents extends React.Component {
               {DoneTasks}
             </div>
           </div>
-        </center>
+        </div>
       </div>
     );
   }

@@ -36,8 +36,8 @@ var style = {
 
   SideBar:{
     backgroundColor: "#000",
-    height: "100vh",
-    width: "70px",
+    height: "100%",
+    width: "6%",
     marginLeft: "0px",
     left: "0px",
     display: "inline-block",
@@ -49,9 +49,9 @@ var style = {
 
   SideMenu:{
     backgroundColor: "#A21E21",
-    height: "100vh",
-    width: "210px",
-    left: "70px",
+    height: "100%",
+    width: "20%",
+    left: "6%",
     display: "inline-block",
     position: "fixed",
     zIndex: "99",
