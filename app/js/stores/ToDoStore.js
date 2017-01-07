@@ -1,7 +1,7 @@
 import { EventEmitter } from "events";
 import dispatcher from "../dispatcher";
-import fs from "fs-extra";
-import readJSON from "utils-fs-read-json";
+//import fs from "fs-extra";
+//import readJSON from "utils-fs-read-json";
 import path from 'path';
 
 
@@ -16,24 +16,26 @@ class ToDoStore extends EventEmitter {
   }
 
   readData(){
-    let file = './localStore/data.json';
+    let data = [];
+    /*let file = './localStore/data.json';
     let data = readJSON.sync( file, 'utf8' );
     if(Array.isArray(data)){
       return data;
     }else{
       data = [];
-    }
+    }*/
     return data;
   }
 
   saveData(){
     let file = './localStore/data.json';
     let data = this.appData;
+    /*
     fs.outputJson(file, data, function (err) {
       err ? console.log(err) : console.log("data saved succesfully");
       fs.readJson(file, function(err, data) {
       })
-    })
+    })*/
     this.emit("change");
   }
 

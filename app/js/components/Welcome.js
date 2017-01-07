@@ -1,5 +1,5 @@
 import React from "react";
-
+import ReactDOM from 'react-dom';
 import ToDoStore from "../stores/ToDoStore";
 import CreateNewUser from './user_Management/CreateNewUser.js';
 import LoadUsers from './user_Management/LoadUsers.js';
@@ -51,6 +51,4 @@ class Welcome extends React.Component {
   }
 }
 
-module.exports = (
-  <Welcome />
-);
+ReactDOM.render(<Welcome />, document.getElementById('content'));
