@@ -1,7 +1,11 @@
-# ToDo-Assistant
+# ToDo-Assistant (Webpack Version)
 ![Logo](https://github.com/mannycolon/toDo-Assistant/blob/master/app/img/logo.png "ToDo-Assistant")
 
 to-do list application.
+
+Description:
+---
+This is the ToDo-Assistant app (browser version) bundled using Webpack.
 
 Web Technologies
 ---
@@ -66,7 +70,7 @@ sudo npm install npm -g
 Type the following in your terminal
 
 ```
-npm install 
+npm install
 ```
 This will install all dependencies
 
